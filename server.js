@@ -3,11 +3,11 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/video.html'));
 });
 
-app.get('/v/:video', function(req, res) {
+app.get('/v/:video', (req, res) => {
     const path = 'assets/' + req.params.video + '.mp4';
 
     const stat = fs.statSync(path);
@@ -45,6 +45,6 @@ app.get('/v/:video', function(req, res) {
     }
 });
 
-app.listen(3000, function() {
+app.listen(3000, () => {
     console.log('App is running on port 3000');
 });
