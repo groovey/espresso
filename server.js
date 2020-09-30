@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname + '/video.html'));
 });
 
 app.get('/v/:video', function(req, res) {
