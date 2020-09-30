@@ -13,3 +13,4 @@ yarn-error.log
 *.code-workspace
 /.vscode
 .php_cs.cache
+hello.txt
