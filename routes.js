@@ -12,7 +12,7 @@ const requestHandler = (req, res) => {
     res.write('<div>URL = ' + req.url + '</div>');
 
     if (url == '/') {
-        res.write('<h3>Welcome home</h3>');
+        res.write('<h3>Welcome home.</h3>');
         res.write('<ul>');
         res.write('<li><a href="/me">ME</a></li>');
         res.write('<li><a href="/learn-js">Learn JS</a></li>');
@@ -20,10 +20,10 @@ const requestHandler = (req, res) => {
         res.write('</ul>');
         return res.end();
     } else if (url == '/me') {
-        res.write('I am me!');
+        res.write('I am Kim of the jungle.');
         return res.end();
     } else if (url == '/learn-js') {
-        res.write('learn to write JS code');
+        res.write('learn to write JS code.');
         return res.end();
     } else if (url == '/upload') {
 

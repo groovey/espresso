@@ -8,12 +8,10 @@
         "express": "^4.17.1",
         "formidable": "^1.2.2"
     },
-    "devDependencies": {
-        "nodemon": "^2.0.4"
-    },
+    "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node app.js"
+        "start": "supervisor app.js"
     },
     "repository": {
         "type": "git",
