@@ -3,13 +3,9 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 
-
 // To read files, use this instead of require
 var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
 const jsonNotRecommended = require('./users.json');
-
-
-
 
 // Writing objects
 const person = {
