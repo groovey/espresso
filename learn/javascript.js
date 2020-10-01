@@ -99,12 +99,7 @@ setTimeout(() => {
 }, 2000);
 
 
-
-
-
-
-
-
+// Start
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
