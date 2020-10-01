@@ -8,7 +8,9 @@
         "express": "^4.17.1",
         "formidable": "^1.2.2"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node app.js"
