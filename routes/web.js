@@ -1,4 +1,6 @@
 const express = require('express');
+const path = require('path');
+const helper = require('../bootstrap/helper');
 const chalk = require('chalk');
 
 const router = express.Router();
@@ -9,11 +11,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/contact', (req, res) => {
-    var form = `<form action="/contact/process" method="POST" >
-                    <input type="text" name="name">
-                    <input type="submit" value="Contact Us!">
-                </form>`;
-    res.send(form);
+    let form = path.join(helper.path.base, 'resources', 'views', 'contact.html');
+    res.sendFile(form);
 });
 
 router.post('/contact/process', (req, res) => {

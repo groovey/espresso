@@ -8,8 +8,9 @@ const cookieParser = require('cookie-parser');
 const webRoute = require('./routes/web');
 const adminRoute = require('./routes/admin');
 const apiRoute = require('./routes/api');
-const log = console.log;
+const helper = require('./bootstrap/helper');
 const app = express();
+const log = console.log;
 const hostname = 'localhost';
 const port = 3000;
 
@@ -26,12 +27,12 @@ app.use('/api', apiRoute);
 
 // Middleware - Error 404
 app.use((req, res, next) => {
-    res.status(404).send('Error 404: Page not found!');
+    res.status(404).sendFile(path.join(__dirname, 'resources', 'views', 'error', '404.html'));
 });
 
 // Middleware - Error 500
 app.use((err, req, res, next) => {
-    res.status(500).send('Error 500: Something broke!');
+    res.status(500).sendFile(path.join(__dirname, 'resources', 'views', 'error', '500.html'));
 });
 
 app.listen(port, () => {
