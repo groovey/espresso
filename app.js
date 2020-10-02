@@ -1,42 +1,33 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const http = require('http');
-const webRoute = require('./routes/web');
+const logger = require('morgan');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 
+const webRoute = require('./routes/web');
+const log = console.log;
 const app = express();
 const port = 3000;
 
-// app.use(express.json());
+app.use(logger('dev'));
+app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-
-// Middleware - Logger
-const logger = (req, res, next) => {
-    console.log('LOGGED');
-    next();
-};
-app.use(logger);
-
-// Middleware - Matches all request
-app.use('/', (req, res, next) => {
-    console.log('This middleware always run');
-    next();
-});
-
-// Middleware - only for /me route
-app.use('/me', (req, res, next) => {
-    console.log('This middleware is only form /me');
-    next();
-});
-
-// Middleware - error 500
-app.use(function(err, req, res, next) {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-});
-
+app.use(cookieParser());
 
 app.use(webRoute);
+
+// Middleware - Error 404
+app.use((req, res, next) => {
+    res.status(404).send('Page not found!');
+});
+
+// Middleware - Error 500
+app.use((err, req, res, next) => {
+    res.status(500).send('Something broke!');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port port!`);
