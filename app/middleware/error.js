@@ -8,6 +8,7 @@ module.exports = {
         });
     },
     e500: (err, req, res, next) => {
+        log(err);
         res.status(500).render(path.join('error', '500'), {
             title: '500 | Internal Server Error',
         });
