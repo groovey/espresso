@@ -11,8 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/contact', (req, res) => {
-    var form = path.join(helper.path.base, 'resources', 'views', 'contact.html');
-    res.sendFile(form);
+    res.render('contact', {});
 });
 
 router.post('/contact/process', (req, res) => {
