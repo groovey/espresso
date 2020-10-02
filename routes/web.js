@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
 
 router.get('/contact', (req, res) => {
     let form = path.join(helper.path.base, 'resources', 'views', 'contact.html');
+
+
     res.sendFile(form);
 });
 
