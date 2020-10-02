@@ -1,16 +1,15 @@
-const express = require("express");
-const logger = require("morgan");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const dotenv = require("dotenv");
-const http = require("http");
+const express = require('express');
+const logger = require('morgan');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+const http = require('http');
 
 const webRoute = require('./routes/web');
 const adminRoute = require('./routes/admin');
 const apiRoute = require('./routes/api');
 const helper = require('./bootstrap/helper');
 const errorMiddleware = require('./app/middleware/error');
-const log = console.log;
 const hostname = 'localhost';
 const port = 3000;
 const app = express();
@@ -27,8 +26,8 @@ app.use(webRoute);
 app.use('/admin', adminRoute);
 app.use('/api', apiRoute);
 app.use(errorMiddleware.e404);
-app.use(errorMiddleware.e500);
+// app.use(errorMiddleware.e500);
 
 app.listen(port, () => {
-    log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });

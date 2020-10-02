@@ -1,1 +1,25 @@
-POST http://localhost:3000
+### products.index
+GET http://localhost:3000/admin/products
+
+### products.create
+GET http://localhost:3000/admin/products/create
+
+### products.store
+POST http://localhost:3000/admin/products
+content-type: application/json
+
+{
+    "name": "the unique product" 
+}
+
+### products.show
+GET http://localhost:3000/admin/products/1
+
+### products.edit
+GET http://localhost:3000/admin/products/1/edit
+
+### products.update
+PUT http://localhost:3000/admin/products/1
+
+### products.delete
+DELETE http://localhost:3000/admin/products/1
