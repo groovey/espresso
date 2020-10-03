@@ -1,31 +1,32 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const app = express();
+const path = require('path');
 const formidable = require('formidable');
+const helper = require('../bootstrap/helper');
 
 app.get('/', (req, res) => {
-    let form = `
-    <form action="process" method="post" enctype="multipart/form-data">
-    <input type="file" name="data"><br>
-    <input type="submit">
-    </form>
-    `;   
+    let form = `<form action="process" method="post" enctype="multipart/form-data">
+                    <input type="file" name="data"><br>
+                    <input type="submit">
+                </form>`;
     return res.send(form);
 });
 
 app.post('/process', (req, res) => {
     var form = new formidable.IncomingForm();
-    form.parse(req, function(err, fields, files) {
+    form.parse(req, function (err, fields, files) {
         var oldpath = files.data.path;
-        var newpath = 'C:/DATA/nodejs/assets/' + files.data.name;
-        fs.rename(oldpath, newpath, function(err) {
+        var newpath = path.join(helper.path.resources, 'docs', files.data.name);
+        console.log(newpath);
+
+        fs.rename(oldpath, newpath, function (err) {
             if (!err) {
                 res.write('File uploaded and moved!');
                 res.write('path = ' + newpath);
                 res.end();
             }
-            res.redirect('/');            
+            res.redirect('/');
         });
     });
 });

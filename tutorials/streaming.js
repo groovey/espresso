@@ -1,10 +1,11 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const app = express();
+const helper = require('../bootstrap/helper');
+const path = require('path');
 
 app.get('/', (req, res) => {
-    
+
     // Sample mp4
     // https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4
 
@@ -27,14 +28,15 @@ app.get('/', (req, res) => {
                 </div>`;
 
     res.send(form);
-    
+
 });
 
 app.get('/v/:video', (req, res) => {
 
-    const path = 'assets/' + req.params.video + '.mp4';    
+    // const localPath = helper.localPath.resources + '/videos/' + req.params.video + '.mp4';
+    const localPath = path.join(helper.path.resources, 'videos', req.params.video + '.mp4');
 
-    const stat = fs.statSync(path);
+    const stat = fs.statSync(localPath);
     const fileSize = stat.size;
     const range = req.headers.range;
 
@@ -46,7 +48,7 @@ app.get('/v/:video', (req, res) => {
             fileSize - 1;
 
         const chunksize = (end - start) + 1;
-        const file = fs.createReadStream(path, {
+        const file = fs.createReadStream(localPath, {
             start,
             end
         });
@@ -65,7 +67,7 @@ app.get('/v/:video', (req, res) => {
             'Content-Type': 'video/mp4',
         };
         res.writeHead(200, head);
-        fs.createReadStream(path).pipe(res);
+        fs.createReadStream(localPath).pipe(res);
     }
 });
 

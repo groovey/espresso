@@ -2,6 +2,8 @@ const path = require('path');
 
 module.exports = {
     path: {
-        base: path.dirname(require.main.filename),
+        base: process.cwd(),
+        resources: path.join(process.cwd(), 'resources'),
+        cwd: process.cwd(),
     },
 };
