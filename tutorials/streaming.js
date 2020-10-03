@@ -4,11 +4,35 @@ const path = require('path');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/video.html'));
+    
+    // Sample mp4
+    // https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4
+
+    let form = `
+                <style>
+                    video {
+                        height: 100vh;
+                        width: 100%;
+                        object-fit: fill;
+                        position: absolute;
+                    }                    
+                </style>
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-3">
+                        <video style="" id="videoPlayer" controls autoplay>
+                            <source src="http://localhost:3000/v/sample" type="video/mp4">
+                        </video>
+                    </div>
+                </div>`;
+
+    res.send(form);
+    
 });
 
 app.get('/v/:video', (req, res) => {
-    const path = 'assets/' + req.params.video + '.mp4';
+
+    const path = 'assets/' + req.params.video + '.mp4';    
 
     const stat = fs.statSync(path);
     const fileSize = stat.size;
@@ -46,5 +70,5 @@ app.get('/v/:video', (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('App is running on port 3000');
+    console.log('App is running at http://localhost:3000');
 });
