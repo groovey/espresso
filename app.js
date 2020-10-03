@@ -26,6 +26,8 @@ app.use(webRoute);
 app.use('/admin', adminRoute);
 app.use('/api', apiRoute);
 app.use(errorMiddleware.e404);
+
+// todo run only in dev environment
 // app.use(errorMiddleware.e500);
 
 app.listen(port, () => {

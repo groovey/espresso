@@ -1,5 +1,4 @@
 const express = require('express');
-const chalk = require('chalk');
 const productController = require('../app/controllers/product');
 const router = express.Router();
 

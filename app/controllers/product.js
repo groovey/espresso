@@ -1,12 +1,10 @@
-let product = {
-    data() {
-        return {
-            name: 'Product 1'
-        };
-    },
+const Product = require('../models/Product');
+
+let controller = {
     index: function (req, res) {
-        res.send(product.data());
-        product.custom();
+        const product = Product.all();
+        res.send(product);
+        controller.custom();
     },
     create: (req, res) => {
         let form = `<form action="/admin/products" method="post" >
@@ -18,6 +16,9 @@ let product = {
     store: (req, res) => {
         let body = req.body;
         let name = req.body.name;
+        let product = new Product(name);
+        product.save();
+
         console.log(body);
         console.log(name);
         res.redirect('/admin/products');
@@ -43,4 +44,4 @@ let product = {
     },
 };
 
-module.exports = product;
+module.exports = controller;
