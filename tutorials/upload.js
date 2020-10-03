@@ -20,10 +20,12 @@ app.post('/process', (req, res) => {
         var oldpath = files.data.path;
         var newpath = 'C:/DATA/nodejs/assets/' + files.data.name;
         fs.rename(oldpath, newpath, function(err) {
-            if (err) throw err;
-            res.write('File uploaded and moved!');
-            res.write('path = ' + newpath);
-            res.end();
+            if (!err) {
+                res.write('File uploaded and moved!');
+                res.write('path = ' + newpath);
+                res.end();
+            }
+            res.redirect('/');            
         });
     });
 });
