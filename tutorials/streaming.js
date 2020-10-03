@@ -33,7 +33,6 @@ app.get('/', (req, res) => {
 
 app.get('/v/:video', (req, res) => {
 
-    // const localPath = helper.localPath.resources + '/videos/' + req.params.video + '.mp4';
     const localPath = path.join(helper.path.resources, 'videos', req.params.video + '.mp4');
 
     const stat = fs.statSync(localPath);
