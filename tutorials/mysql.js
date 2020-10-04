@@ -5,8 +5,9 @@ const mysql = require('mysql');
 // mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'webdevel';
 // mysql> FLUSH PRIVILEGES;
 // mysql> CREATE DATABASE espresso
-// mysql> CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))
-// mysql> INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')
+// mysql> CREATE TABLE products (name VARCHAR(255), price VARCHAR(255))
+// mysql> INSERT INTO products (name, price) VALUES ('Apple', 25)
+// mysql> INSERT INTO products (name, price) VALUES ('Banana', 13)
 // mysql> quit
 
 const db = mysql.createConnection({

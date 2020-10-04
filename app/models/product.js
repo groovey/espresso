@@ -1,3 +1,4 @@
+const db = require('../services/db');
 const products = [];
 
 module.exports = class Product {
@@ -10,6 +11,6 @@ module.exports = class Product {
     }
 
     static all() {
-        return products;
+        return db.execute('SELECT * FROM products');
     }
 };

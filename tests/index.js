@@ -1,16 +1,30 @@
-let product = {
-    data() {
-        return {
-            name: 'Product 1'
-        };
+const path = require('path');
+var pathinfo = {
+    base() {
+        return process.cwd();
     },
-    flag: false,
-    test() {
-        console.log('helow');
-    },
-    index: function () {
-        this.test();
-    },
+    resources(folder) {
+        return path.join(this.base(), 'resources', folder);
+    }
 };
 
-product.index();
+console.log(pathinfo.resources('views'));
+
+
+
+// let product = {
+//     data() {
+//         return {
+//             name: 'Product 1'
+//         };
+//     },
+//     flag: false,
+//     test() {
+//         return process.cwd();
+//     },
+//     index: function () {
+//         console.log(this.test());
+//     },
+// };
+
+// product.index();

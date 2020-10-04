@@ -1,0 +1,1 @@
+exports.pathinfo = require('./pathinfo');

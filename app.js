@@ -8,14 +8,14 @@ const http = require('http');
 const webRoute = require('./routes/web');
 const adminRoute = require('./routes/admin');
 const apiRoute = require('./routes/api');
-const helper = require('./bootstrap/helper');
 const errorMiddleware = require('./app/middlewares/error');
 const hostname = 'localhost';
-const port = 3000;
+const port = process.env.PORT || '3000';
 const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({

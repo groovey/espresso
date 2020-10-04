@@ -1,7 +1,4 @@
 const express = require('express');
-const path = require('path');
-const helper = require('../bootstrap/helper');
-const chalk = require('chalk');
 
 const router = express.Router();
 const log = console.log;

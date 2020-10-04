@@ -1,0 +1,36 @@
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+
+    }
+</style>
+</style>
+
+<h3>Product Listing</h3>
+
+<p>
+    <a href="/admin/products/create">Add Product</a>
+</p>
+
+<table>
+    <thead>
+        <td>Name</td>
+        <td>Price</td>
+    </thead>
+
+    <% products.forEach(product => { %>
+    <tr>
+        <td><%=  product.name %></td>
+        <td><%=  product.price %></td>
+    </tr>
+    <% }) %>
+
+</table>
