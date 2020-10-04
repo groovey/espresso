@@ -1,13 +1,15 @@
+// NOTE: to run 
+//     $ node tutorials/streaming.js
+// Sample mp4
+// https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4
+
 const express = require('express');
 const fs = require('fs');
 const app = express();
-const helper = require('../bootstrap/helper');
+const pathinfo = require('../app/helpers').pathinfo;
 const path = require('path');
 
 app.get('/', (req, res) => {
-
-    // Sample mp4
-    // https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4
 
     let form = `
                 <style>
@@ -33,7 +35,7 @@ app.get('/', (req, res) => {
 
 app.get('/v/:video', (req, res) => {
 
-    const localPath = path.join(helper.path.resources, 'videos', req.params.video + '.mp4');
+    const localPath = path.join(pathinfo.resources('videos'), req.params.video + '.mp4');
 
     const stat = fs.statSync(localPath);
     const fileSize = stat.size;

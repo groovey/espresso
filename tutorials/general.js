@@ -15,7 +15,7 @@ const person = {
     greet() {
         console.log('Greetings, ' + this.name);
     },
-    hi: function() {
+    hi: function () {
         console.log('Hi, ' + this.name);
     },
     hello: () => {

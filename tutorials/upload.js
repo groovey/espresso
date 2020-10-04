@@ -3,7 +3,7 @@ const fs = require('fs');
 const app = express();
 const path = require('path');
 const formidable = require('formidable');
-const helper = require('../bootstrap/helper');
+const pathinfo = require('../app/helpers').pathinfo;
 
 app.get('/', (req, res) => {
     let form = `<form action="process" method="post" enctype="multipart/form-data">
@@ -17,7 +17,8 @@ app.post('/process', (req, res) => {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
         var oldpath = files.data.path;
-        var newpath = path.join(helper.path.resources, 'docs', files.data.name);
+        var newpath = path.join(pathinfo.resources('docs'), files.data.name);
+
         console.log(newpath);
 
         fs.rename(oldpath, newpath, function (err) {
@@ -26,7 +27,6 @@ app.post('/process', (req, res) => {
                 res.write('path = ' + newpath);
                 res.end();
             }
-            res.redirect('/');
         });
     });
 });

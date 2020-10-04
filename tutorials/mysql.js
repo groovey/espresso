@@ -1,6 +1,4 @@
-const express = require('express');
-const app = express();
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'webdevel';
 // mysql> FLUSH PRIVILEGES;
@@ -10,26 +8,15 @@ const mysql = require('mysql');
 // mysql> INSERT INTO products (name, price) VALUES ('Banana', 13)
 // mysql> quit
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "webdevel",
-    database: 'espresso',
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'webdevel',
+    database: 'espresso'
 });
-
-db.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
-
-app.get('/', (req, res) => {
-    db.query("SELECT * FROM customers", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-        res.send(result);
-    });
-});
-
-app.listen(3000, () => {
-    console.log('App is running at http://localhost:3000');
-});
+con.promise().query("SELECT * FROM products")
+    .then(([rows, fields]) => {
+        console.log(rows);
+    })
+    .catch(console.log)
+    .then(() => con.end());
