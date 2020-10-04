@@ -16,43 +16,69 @@ let controller = {
 
     // Show the form for creating a new resource.
     create: (req, res) => {
-        res.render(controller.view('entry'));
+        res.render(controller.view('entry'), {
+            title: 'Product Add',
+            action: '/admin/products',
+            method: 'POST',
+            submit: 'Save',
+            product: [],
+        });
     },
 
     // Store a newly created resource in storage.
     store: (req, res) => {
-        let body = req.body;
-        let name = req.body.name;
-        let product = new Product(name);
+        let product = new Product();
+        product.name = req.body.name;
+        product.price = req.body.price;
         product.save();
 
-        console.log(body);
-        console.log(name);
         res.redirect('/admin/products');
     },
 
     // Display the specified resource.
     show: (req, res) => {
         let id = req.params.id;
-        res.send('Show the product id = ' + id);
+        Product.find(id)
+            .then(([data]) => {
+                res.render(controller.view('show'), {
+                    product: data[0]
+                });
+            })
+            .catch(console.log);
     },
 
     // Show the form for editing the specified resource.
     edit: (req, res) => {
         let id = req.params.id;
-        res.send('Edit the product id = ' + id);
+        Product.find(id)
+            .then(([data]) => {
+                res.render(controller.view('entry'), {
+                    title: 'Product Edit',
+                    action: '/admin/products/' + id,
+                    method: 'PUT',
+                    submit: 'Update',
+                    product: data[0]
+                });
+            })
+            .catch(console.log);
     },
 
     // Update the specified resource in storage.
     update: (req, res) => {
-        let id = req.params.id;
-        res.send('Update the product id = ' + id);
+        let product = Product.prototype;
+        product.id = req.params.id;
+        product.name = req.body.name;
+        product.price = req.body.price;
+        product.update();
+        res.redirect('/admin/products');
     },
 
     // Remove the specified resource from storage.    
     destroy: (req, res) => {
-        let id = req.params.id;
-        res.send('Delete the product id = ' + id);
+        let product = Product.prototype;
+        product.id = req.params.id;
+        product.delete();
+        res.redirect('/admin/products');
     },
 
     view(view) {

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const http = require('http');
+var methodOverride = require('method-override');
 
 const webRoute = require('./routes/web');
 const adminRoute = require('./routes/admin');
@@ -22,6 +23,16 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
+// app.use(methodOverride(req => req.body._method));
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+      var method = req.body._method;
+      delete req.body._method;
+      return method;
+    }
+}));
+
 app.use(webRoute);
 app.use('/admin', adminRoute);
 app.use('/api', apiRoute);

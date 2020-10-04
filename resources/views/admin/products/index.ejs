@@ -12,24 +12,42 @@
 
     }
 </style>
-</style>
+
 
 <h3>Product Listing</h3>
 
 <p>
-    <a href="/admin/products/create">Add Product</a>
+    <a href="products/create">Add Product</a>
 </p>
 
-<table>
+<table style="width: 50%;">
     <thead>
+        <td>ID</td>
         <td>Name</td>
         <td>Price</td>
+        <td>Show</td>
+        <td>Delete</td>
+        <td>Edit</td>
     </thead>
 
     <% products.forEach(product => { %>
     <tr>
-        <td><%=  product.name %></td>
-        <td><%=  product.price %></td>
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td>
+            <a href="products/<%= product.id %>">Show</a>
+        </td>
+        <td>
+            <form action="/admin/products/<%= product.id %>" method="POST" id="delete_<%= product.id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <a href="#" onclick="document.getElementById('delete_<%= product.id %>').submit()">Delete</a>
+            </form>
+
+        </td>
+        <td>
+            <a href="products/<%= product.id %>/edit">Edit</a>
+        </td>
     </tr>
     <% }) %>
 
