@@ -1,29 +1,52 @@
 require('dotenv').config();
 
-if (!process.env.DB_CONNECTION) {
-    process.exit('Please configure your .env database.');
+if (!process.env.APP_NAME) {
+    process.exit('Please configure your environmental variables.');
 }
 
-switch (process.env.DB_CONNECTION) {
-    case 'mysql':
-        const mysql = require('mysql2');
-        const pool = mysql.createPool({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USERNAME,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
-            waitForConnections: true,
-            connectionLimit: 10,
-            queueLimit: 0,
-            debug: false
+if (process.env.MYSQL_STATUS == 'enabled') {
+    const mysql = require('mysql2');
+
+    const pool = mysql.createPool({
+        host: process.env.MYSQL_HOST,
+        user: process.env.MYSQL_USERNAME,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+        debug: false
+    });
+
+    exports.mysql = () => {
+        return pool.promise();
+    };
+}
+
+if (process.env.MONGO_STATUS) {
+
+    const MongoClient = require('mongodb').MongoClient;
+    const url = process.env.MONGO_HOST;
+    let database;
+
+    new MongoClient(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        .connect()
+        .then(client => {
+            console.log("Connected successfully to the mongo server.");
+            database = client.db(process.env.MONGO_DATABASE);
+        })
+        .catch(err => {
+            console.log(err);
         });
-        module.exports = pool.promise();
-        break;
 
-    case 'mongo':
+    exports.mongo = () => {
+        if (database) {
+            return database;
+        }
+        throw 'No mongodb database found.';
+    };
 
-        break;
-
-    default:
-        break;
 }

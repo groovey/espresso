@@ -1,31 +1,31 @@
-const db = require('../services/db');
+const mysql = require('../services/db').mysql;
 
 class Product {
 
     constructor() {}
 
     static all() {
-        return db.execute('SELECT * FROM products');
+        return mysql().execute('SELECT * FROM products');
     }
 
     static find(id) {
-        return db.execute('SELECT * FROM products WHERE id = ? LIMIT 1', [id]);
+        return mysql().execute('SELECT * FROM products WHERE id = ? LIMIT 1', [id]);
     }
 
     save() {
-        db.execute('INSERT INTO products (name, price) VALUES (?, ?)',
+        mysql().execute('INSERT INTO products (name, price) VALUES (?, ?)',
             [this.name, this.price]
         );
     }
 
     update() {
-        db.execute('UPDATE products SET name = ?, price = ? WHERE id = ?',
+        mysql().execute('UPDATE products SET name = ?, price = ? WHERE id = ?',
             [this.name, this.price, this.id]
         );
     }
 
     delete() {
-        db.execute('DELETE FROM products WHERE id = ?',
+        mysql().execute('DELETE FROM products WHERE id = ?',
             [this.id]
         );
     }
