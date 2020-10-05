@@ -26,10 +26,10 @@ app.use(cookieParser());
 // app.use(methodOverride(req => req.body._method));
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      // look in urlencoded POST bodies and delete it
-      var method = req.body._method;
-      delete req.body._method;
-      return method;
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method;
+        delete req.body._method;
+        return method;
     }
 }));
 
@@ -38,8 +38,9 @@ app.use('/admin', adminRoute);
 app.use('/api', apiRoute);
 app.use(errorMiddleware.e404);
 
-// todo run only in dev environment
-// app.use(errorMiddleware.e500);
+if (process.env.NODE_ENV == 'production') {
+    app.use(errorMiddleware.e500);
+}
 
 app.listen(port, () => {
     console.log(`Server running at http://${hostname}:${port}/`);

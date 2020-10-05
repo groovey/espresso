@@ -36,7 +36,7 @@
         <td><%= product.name %></td>
         <td><%= product.price %></td>
         <td>
-            <a href="products/<%= product.id %>">Show</a>
+            <a href="/admin/products/<%= product.id %>">Show</a>
         </td>
         <td>
             <form action="/admin/products/<%= product.id %>" method="POST" id="delete_<%= product.id %>">
@@ -46,7 +46,7 @@
 
         </td>
         <td>
-            <a href="products/<%= product.id %>/edit">Edit</a>
+            <a href="/admin/products/<%= product.id %>/edit">Edit</a>
         </td>
     </tr>
     <% }) %>

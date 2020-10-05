@@ -10,6 +10,7 @@
         "colors": "^1.4.0",
         "commander": "^6.1.0",
         "cookie-parser": "^1.4.5",
+        "cross-env": "^7.0.2",
         "debug": "^4.2.0",
         "dotenv": "^8.2.0",
         "ejs": "^3.1.5",
@@ -18,17 +19,25 @@
         "fs-extra": "^9.0.1",
         "lodash": "^4.17.20",
         "method-override": "^3.0.0",
+        "mongodb": "^3.6.2",
         "morgan": "^1.10.0",
         "mysql2": "^2.2.5",
         "uuid": "^8.3.0"
     },
     "devDependencies": {
         "faker": "^5.1.0",
-        "webpack": "^4.44.2"
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "supervisor app.js"
+        "start": "cross-env supervisor app.js",
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=webpack.config.js"
     },
     "repository": {
         "type": "git",
