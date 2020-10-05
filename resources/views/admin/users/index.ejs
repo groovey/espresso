@@ -1,0 +1,54 @@
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+
+    }
+</style>
+
+
+<h3>User Listing</h3>
+
+<p>
+    <a href="/admin/users/create">Add User</a>
+</p>
+
+<table style="width: 50%;">
+    <thead>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Show</td>
+        <td>Delete</td>
+        <td>Edit</td>
+    </thead>
+
+    <% users.forEach(user => { %>
+    <tr>
+        <td><%= user._id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+            <a href="/admin/users/<%= user._id %>">Show</a>
+        </td>
+        <td>
+            <form action="/admin/users/<%= user._id %>" method="POST" id="delete_<%= user._id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <a href="#" onclick="document.getElementById('delete_<%= user._id %>').submit()">Delete</a>
+            </form>
+
+        </td>
+        <td>
+            <a href="/admin/users/<%= user._id %>/edit">Edit</a>
+        </td>
+    </tr>
+    <% }) %>
+
+</table>
