@@ -25,7 +25,11 @@ if (process.env.MYSQL_STATUS == 'enabled') {
 
 if (process.env.MONGO_STATUS) {
 
-    const MongoClient = require('mongodb').MongoClient;
+    const {
+        MongoClient,
+        ObjectId
+    } = require('mongodb');
+
     const url = process.env.MONGO_HOST;
     let database;
 
@@ -48,5 +52,7 @@ if (process.env.MONGO_STATUS) {
         }
         throw 'No mongodb database found.';
     };
+
+    exports.ObjectId = ObjectId;
 
 }

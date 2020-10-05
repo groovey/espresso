@@ -1,16 +1,22 @@
 const path = require('path');
-const User = require('../models').User;
 const pathinfo = require('../helpers').pathinfo;
+const User = require('../models').User;
 
 let controller = {
     // Display a listing of the resource.
     index: function (req, res) {
-        User.find({}).toArray((err, datas) => {
 
-            res.status(200).render(controller.view('index'), {
-                users: datas
+        User.collection()
+            .find({})
+            .toArray()
+            .then((datas) => {
+                res.render(controller.view('index'), {
+                    users: datas
+                });
+            }).catch((err) => {
+                console.log(err);
             });
-        });
+
     },
 
     // Show the form for creating a new resource.
@@ -36,14 +42,18 @@ let controller = {
 
     // Display the specified resource.
     show: (req, res) => {
-        let id = req.params.id;
-        User.find(id)
-            .then(([data]) => {
+
+        let id = User.id(req.params.id);
+
+        User.collection()
+            .findOne(id)
+            .then((data) => {
                 res.render(controller.view('show'), {
-                    user: data[0]
+                    user: data
                 });
-            })
-            .catch(console.log);
+            }).catch((err) => {
+                console.log(err);
+            });
     },
 
     // Show the form for editing the specified resource.

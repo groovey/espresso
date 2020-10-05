@@ -1,26 +1,18 @@
-const mongo = require('../services/db').mongo;
+const {
+    mongo,
+    ObjectId
+} = require('../services/db');
 
 class User {
 
-    constructor() {
+    constructor() {}
+
+    static collection() {
         return mongo().collection('users');
     }
 
-    static get(cond = {}) {
-        // return mongo().execute('SELECT * FROM products');
-
-        return mongo().collection('users').find({});
-
-        //     .toArray(function (err, datas) {
-        //     console.log("Found the following records");
-        //     console.log(datas);
-        //     client.close();
-        // });
-
-    }
-
-    static find(cond = {}) {
-        return mongo().collection('users').find({});
+    static id(id) {
+        return ObjectId(id);
     }
 
     save() {

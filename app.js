@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const logger = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -23,6 +24,11 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
+app.use(session({
+    secret: 'ssshhhhh',
+    saveUninitialized: true,
+    resave: true
+}));
 // app.use(methodOverride(req => req.body._method));
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
