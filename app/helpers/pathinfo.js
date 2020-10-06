@@ -1,6 +1,6 @@
 const path = require('path');
 
-let pathinfo = {
+const pathinfo = {
     base() {
         return process.cwd();
     },
