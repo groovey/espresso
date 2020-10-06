@@ -11,7 +11,12 @@ const methodOverride = require('method-override');
 const middleware = require('../app/middlewares');
 require('dotenv').config();
 
-module.exports = (app) => {
+module.exports = function () {
+
+    // The secret sauce
+    let app = express();
+    let hostname = process.env.APP_URL;
+    let port = process.env.PORT || '3000';
 
     // Set the root directory
     let cwd = process.cwd();
@@ -66,11 +71,25 @@ module.exports = (app) => {
     }));
 
     return {
+
+        routes() {
+            let folder = '../routes/';
+            app.use(require(folder + 'web'));
+            app.use('/api', require(folder + 'api'));
+            app.use('/admin', require(folder + 'admin'));
+        },
+
         error() {
             app.use(middleware.error.code404);
             if (process.env.NODE_ENV == 'production') {
                 app.use(middleware.error.code500);
             }
+        },
+
+        run() {
+            app.listen(port, () => {
+                console.log(`Server running at ${hostname}:${port}/`);
+            });
         }
     };
 };

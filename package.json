@@ -38,7 +38,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "cross-env supervisor app.js",
+        "start": "cross-env supervisor index.js",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=/webpack.config.js",
         "watch": "npm run development -- --watch",
