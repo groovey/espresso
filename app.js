@@ -5,7 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const http = require('http');
-var methodOverride = require('method-override');
+const methodOverride = require('method-override');
 
 const webRoute = require('./routes/web');
 const adminRoute = require('./routes/admin');
@@ -25,10 +25,17 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(session({
-    secret: 'ssshhhhh',
+    secret: process.env.APP_KEY,
     saveUninitialized: true,
-    resave: true
+    resave: true,
+    // cookie: {
+    //     httpOnly: true,
+    //     secure: true,
+    //     sameSite: true,
+    //     maxAge: 600000
+    // }
 }));
+// app.set('trust proxy', 1);
 // app.use(methodOverride(req => req.body._method));
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
