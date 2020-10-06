@@ -1,3 +1,5 @@
-exports.app = require('./app');
-exports.admin = require('./admin');
-exports.api = require('./api');
+module.exports = {
+    app: require('./app'),
+    api: require('./api'),
+    admin: require('./admin'),
+};
