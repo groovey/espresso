@@ -1,17 +1,7 @@
-const express = require('express');
-const mongo = require('../app/services/db').mongo;
-const router = express.Router();
+const router = require('express').Router();
 
 router.get('/test', (req, res) => {
-
-    // mongo().collection("products").find({}).toArray(function (err, datas) {
-    //     console.log("Found the following records");
-    //     console.log(datas);
-    //     res.send(datas);
-    // });
-
-    res.flash('test');
-
+    res.send('test');
 });
 
 router.get('/', (req, res) => {

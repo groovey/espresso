@@ -1,16 +1,23 @@
 const path = require('path');
-const log = console.log;
 
-module.exports = {
-    e404: (req, res, next) => {
-        res.status(404).render(path.join('error', '404'), {
-            title: '404 | Page Not Found',
-        });
+const middleware = {
+
+    code404: (req, res, next) => {
+        middleware.render(res, 404);
     },
-    e500: (err, req, res, next) => {
-        log(err);
-        res.status(500).render(path.join('error', '500'), {
-            title: '500 | Internal Server Error',
-        });
+
+    code500: (err, req, res, next) => {
+        middleware.render(res, 505);
     },
+
+    render(res, code) {
+
+        let html = path.join('error', code.toString());
+
+        res.status(code).render(html, {
+            title: code + ' | Page Not Found',
+        });
+    }
 };
+
+module.exports = middleware;
