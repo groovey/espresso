@@ -40,8 +40,9 @@
         </td>
         <td>
             <form action="/admin/products/<%= product.id %>" method="POST" id="delete_<%= product.id %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
                 <input type="hidden" name="_method" value="DELETE">
-                <a href="#" onclick="document.getElementById('delete_<%= product.id %>').submit()">Delete</a>
+                <input type="submit" value="Delete">
             </form>
 
         </td>

@@ -1,6 +1,6 @@
 <form action="<%= action %>" method="POST">
     <input type="hidden" name="_method" value="<%= method %>">
-
+    <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
     <div>
         <input type="text" name="name" placeholder="Name" value="<%= product.name %>">
     </div>

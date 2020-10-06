@@ -2,7 +2,7 @@ const path = require('path');
 const pathinfo = require('../helpers').pathinfo;
 const User = require('../models').User;
 
-let controller = {
+const controller = {
     // Display a listing of the resource.
     index: function (req, res) {
 

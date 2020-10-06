@@ -3,18 +3,16 @@ const {
     ObjectId
 } = require('../services/db');
 
-class User {
+const model = {
 
-    constructor() {}
-
-    static collection() {
+    collection() {
         return mongo().collection('users');
-    }
+    },
 
-    static id(id) {
+    id(id) {
         return ObjectId(id);
     }
 
-}
+};
 
-module.exports = User;
+module.exports = model;

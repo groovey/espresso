@@ -1,35 +1,33 @@
 const mysql = require('../services/db').mysql;
 
-class Product {
+const model = {
 
-    constructor() {}
-
-    static all() {
+    all() {
         return mysql().execute('SELECT * FROM products');
-    }
+    },
 
-    static find(id) {
+    find(id) {
         return mysql().execute('SELECT * FROM products WHERE id = ? LIMIT 1', [id]);
-    }
+    },
 
-    save() {
+    save(data) {
         mysql().execute('INSERT INTO products (name, price) VALUES (?, ?)',
-            [this.name, this.price]
+            [data.name, data.price]
         );
-    }
+    },
 
-    update() {
+    update(data, id) {
         mysql().execute('UPDATE products SET name = ?, price = ? WHERE id = ?',
-            [this.name, this.price, this.id]
+            [data.name, data.price, id]
         );
-    }
+    },
 
-    delete() {
+    delete(id) {
         mysql().execute('DELETE FROM products WHERE id = ?',
-            [this.id]
+            [id]
         );
     }
 
 }
 
-module.exports = Product;
+module.exports = model;

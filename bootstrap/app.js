@@ -46,11 +46,6 @@ module.exports = function () {
     // Middleware for cookies
     app.use(cookieParser());
 
-    // Middleware for cross site scripting
-    app.use(csrf({
-        cookie: true
-    }));
-
     // Middleware for sessions
     app.use(session({
         secret: process.env.APP_KEY,
@@ -69,6 +64,19 @@ module.exports = function () {
             return method;
         }
     }));
+
+    // Middleware for cross site scripting
+    app.use(csrf({
+        cookie: true
+    }));
+
+    // Middleware for csrf token
+    app.use(function (req, res, next) {
+        var token = req.csrfToken();
+        res.cookie('XSRF-TOKEN', token);
+        res.locals.csrfToken = token;
+        next();
+    });
 
     return {
 

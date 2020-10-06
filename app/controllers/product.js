@@ -2,7 +2,7 @@ const path = require('path');
 const Product = require('../models').Product;
 const pathinfo = require('../helpers').pathinfo;
 
-let controller = {
+const controller = {
     // Display a listing of the resource.
     index: function (req, res) {
         Product.all()
@@ -21,17 +21,19 @@ let controller = {
             action: '/admin/products',
             method: 'POST',
             submit: 'Save',
-            product: [],
+            product: []
         });
     },
 
     // Store a newly created resource in storage.
     store: (req, res) => {
-        let product = new Product();
-        product.name = req.body.name;
-        product.price = req.body.price;
-        product.save();
 
+        let data = {
+            name: req.body.name,
+            price: req.body.price
+        };
+
+        Product.save(data);
         res.redirect('/admin/products');
     },
 
@@ -65,19 +67,22 @@ let controller = {
 
     // Update the specified resource in storage.
     update: (req, res) => {
-        let product = Product.prototype;
-        product.id = req.params.id;
-        product.name = req.body.name;
-        product.price = req.body.price;
-        product.update();
+
+        let id = req.params.id;
+        let data = {
+            name: req.body.name,
+            price: req.body.price
+        };
+
+        Product.update(data, id);
+
         res.redirect('/admin/products');
     },
 
     // Remove the specified resource from storage.    
     destroy: (req, res) => {
-        let product = Product.prototype;
-        product.id = req.params.id;
-        product.delete();
+        let id = req.params.id;
+        Product.delete(id);
         res.redirect('/admin/products');
     },
 
