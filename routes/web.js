@@ -4,11 +4,13 @@ const router = express.Router();
 
 router.get('/test', (req, res) => {
 
-    mongo().collection("products").find({}).toArray(function (err, datas) {
-        console.log("Found the following records");
-        console.log(datas);
-        res.send(datas);
-    });
+    // mongo().collection("products").find({}).toArray(function (err, datas) {
+    //     console.log("Found the following records");
+    //     console.log(datas);
+    //     res.send(datas);
+    // });
+
+    res.flash('test');
 
 });
 
