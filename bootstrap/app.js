@@ -1,17 +1,17 @@
-const express = require('express');
+const path = require('path');
+const csrf = require('csurf');
 const helmet = require("helmet");
 const logger = require('morgan');
-const path = require('path');
+const express = require('express');
+const flash = require('connect-flash');
+const session = require('express-session');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
-const csrf = require('csurf');
-const session = require('express-session');
-const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const middleware = require('../app/middlewares');
 require('dotenv').config();
 
-module.exports = function () {
+module.exports = () => {
 
     // The secret sauce
     let app = express();
