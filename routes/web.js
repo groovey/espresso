@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/test', (req, res) => {
-    res.send('test');
+    res.send(BASE_PATH);
 });
 
 router.get('/', (req, res) => {

@@ -2,7 +2,7 @@ const path = require('path');
 
 const pathinfo = {
     base() {
-        return process.cwd();
+        return BASE_PATH;
     },
     resources(folder) {
         return path.join(this.base(), 'resources', folder);
