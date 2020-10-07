@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../app/controllers');
+const controller = require('@app/controllers');
 
 router.get('/dashboard', (req, res) => {
     res.send('Home Dashboard');

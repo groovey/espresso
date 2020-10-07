@@ -1,11 +1,16 @@
 const program = require('commander');
 const boxen = require('boxen');
+const {
+    version
+} = require('yargs');
 
 module.exports = {
 
+    version: 'v0.0.1',
+
     index() {
 
-        const version = 'v0.0.1';
+        let version = this.version;
 
         program.version(version, '-v, -V, --vers', 'output the current version');
 

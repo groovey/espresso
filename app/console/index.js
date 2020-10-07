@@ -1,12 +1,14 @@
 const program = require('commander');
 
 module.exports = {
-    commands: () => {
+
+    commands() {
         require('./about').index();
         require('./db').index();
         require('./make').index();
     },
-    run: () => {
+
+    run() {
         program.parse(process.argv);
         process.exit(1);
     }

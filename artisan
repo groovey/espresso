@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+// The engine of the cli app
 const app = require('./app/console');
 
+// Bootstrap all the command
 app.commands();
 
+// Run the console app
 app.run();

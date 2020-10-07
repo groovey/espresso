@@ -1,3 +1,1 @@
-module.exports = {
-    pathinfo: require('./pathinfo'),
-};
+module.exports = {};
