@@ -6,11 +6,13 @@ const controller = {
     // Display a listing of the resource.
     index: function (req, res) {
 
-        Product.all((err, datas) => {
-            res.status(200).render(controller.view('index'), {
-                products: datas
-            });
-        });
+        Product.all()
+            .then(([datas]) => {
+                res.render(controller.view('index'), {
+                    products: datas
+                });
+            })
+            .catch(console.log);
 
     },
 
@@ -42,11 +44,14 @@ const controller = {
 
         let id = req.params.id;
 
-        Product.find(id, (err, data) => {
-            res.render(controller.view('show'), {
-                product: data[0]
-            });
-        });
+        Product.find(id)
+            .then(([data]) => {
+                res.render(controller.view('show'), {
+                    product: data[0]
+                });
+            })
+            .catch(console.log);
+
     },
 
     // Show the form for editing the specified resource.

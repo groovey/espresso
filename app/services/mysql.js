@@ -19,23 +19,23 @@ const service = {
 
     events() {
 
+        const chalk = require('chalk');
+
         pool.on('connection', function (connection) {
-            console.log('Mysql new connection #%d', connection.threadId);
+            console.log('Mysql pool new connection #', chalk.blue(connection.threadId));
         });
 
         pool.on('acquire', function (connection) {
-            console.log('Mysql connection acquired #%d', connection.threadId);
+            console.log('Mysql pool connection acquired #', chalk.blue(connection.threadId));
         });
 
         pool.on('release', function (connection) {
-            console.log('Mysql connection released #%d', connection.threadId);
+            console.log('Mysql pool connection released #', chalk.blue(connection.threadId));
         });
     },
 
-    connect(callback) {
-        pool.getConnection(function (err, connection) {
-            callback(err, connection);
-        });
+    connect() {
+        return pool.promise();
     },
 };
 
