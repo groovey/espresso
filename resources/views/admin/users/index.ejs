@@ -41,7 +41,8 @@
         <td>
             <form action="/admin/users/<%= user._id %>" method="POST" id="delete_<%= user._id %>">
                 <input type="hidden" name="_method" value="DELETE">
-                <a href="#" onclick="document.getElementById('delete_<%= user._id %>').submit()">Delete</a>
+                <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+                <input type="submit" value="Delete">
             </form>
 
         </td>

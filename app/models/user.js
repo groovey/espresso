@@ -1,17 +1,20 @@
-const {
-    mongo,
-    ObjectId
-} = require('../services/db');
+const mongo = require('@app/services').mongo;
 
 const model = {
 
-    collection() {
-        return mongo().collection('users');
-    },
+    table: 'users',
 
     id(id) {
-        return ObjectId(id);
-    }
+        return mongo.id(id);
+    },
+
+    collection() {
+        return mongo.connect().collection(this.table);
+    },
+
+    all() {
+        return this.collection().find({});
+    },
 
 };
 

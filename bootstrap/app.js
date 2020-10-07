@@ -1,5 +1,6 @@
 const path = require('path');
 const csrf = require('csurf');
+const chalk = require('chalk');
 const helmet = require("helmet");
 const logger = require('morgan');
 const express = require('express');
@@ -8,7 +9,7 @@ const session = require('express-session');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
-const middleware = require('../app/middlewares');
+const middleware = require('@app/middlewares');
 require('dotenv').config();
 
 module.exports = () => {
@@ -94,10 +95,24 @@ module.exports = () => {
             }
         },
 
+        db() {
+            const mongo = require('@app/services').mongo;
+            return mongo.init();
+        },
+
         run() {
-            app.listen(port, () => {
-                console.log(`Server running at ${hostname}:${port}/`);
-            });
+
+            this.db()
+                .then(() => {
+
+                    app.listen(port, () => {
+                        console.log('Server running at ' + chalk.bgBlue(hostname + ':' + port));
+                    });
+
+                }).catch((err) => {
+                    console.log(err);
+                });
         }
+
     };
 };
