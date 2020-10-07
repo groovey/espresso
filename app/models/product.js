@@ -1,33 +1,49 @@
-const mysql = require('../services/db').mysql;
+const db = require('../services').mysql;
 
 const model = {
 
-    all() {
-        return mysql().execute('SELECT * FROM products');
+    all(callback) {
+
+        db.connect(function (err, conn) {
+            conn.query('SELECT * FROM products', (err, rows, fields) => {
+                callback(err, rows, fields);
+            });
+
+            conn.release();
+        });
     },
 
-    find(id) {
-        return mysql().execute('SELECT * FROM products WHERE id = ? LIMIT 1', [id]);
+    find(id, callback) {
+
+        db.connect(function (err, conn) {
+            conn.query('SELECT * FROM products WHERE id = ? LIMIT 1', [id], (err, rows, fields) => {
+                callback(err, rows, fields);
+            });
+
+            conn.release();
+        });
+
+        // return mysql.connect().execute('SELECT * FROM products WHERE id = ? LIMIT 1', [id]);
     },
 
     save(data) {
-        mysql().execute('INSERT INTO products (name, price) VALUES (?, ?)',
+        mysql.connect().execute('INSERT INTO products (name, price) VALUES (?, ?)',
             [data.name, data.price]
         );
     },
 
     update(data, id) {
-        mysql().execute('UPDATE products SET name = ?, price = ? WHERE id = ?',
+        mysql.connect().execute('UPDATE products SET name = ?, price = ? WHERE id = ?',
             [data.name, data.price, id]
         );
     },
 
     delete(id) {
-        mysql().execute('DELETE FROM products WHERE id = ?',
+        mysql.connect().execute('DELETE FROM products WHERE id = ?',
             [id]
         );
     }
 
-}
+};
 
 module.exports = model;

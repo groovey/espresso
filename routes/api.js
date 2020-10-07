@@ -1,7 +1,4 @@
-const express = require('express');
-const chalk = require('chalk');
-const router = express.Router();
-const log = console.log;
+const router = require('express').Router();
 
 router.get('/users', (req, res) => {
     let users = [{

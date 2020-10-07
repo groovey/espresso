@@ -5,13 +5,13 @@ const pathinfo = require('../helpers').pathinfo;
 const controller = {
     // Display a listing of the resource.
     index: function (req, res) {
-        Product.all()
-            .then(([datas]) => {
-                res.status(200).render(controller.view('index'), {
-                    products: datas
-                });
-            })
-            .catch(console.log);
+
+        Product.all((err, datas) => {
+            res.status(200).render(controller.view('index'), {
+                products: datas
+            });
+        });
+
     },
 
     // Show the form for creating a new resource.
@@ -39,14 +39,14 @@ const controller = {
 
     // Display the specified resource.
     show: (req, res) => {
+
         let id = req.params.id;
-        Product.find(id)
-            .then(([data]) => {
-                res.render(controller.view('show'), {
-                    product: data[0]
-                });
-            })
-            .catch(console.log);
+
+        Product.find(id, (err, data) => {
+            res.render(controller.view('show'), {
+                product: data[0]
+            });
+        });
     },
 
     // Show the form for editing the specified resource.

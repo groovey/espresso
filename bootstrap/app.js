@@ -70,7 +70,7 @@ module.exports = () => {
         cookie: true
     }));
 
-    // Middleware for csrf token
+    // Middleware for setting the csrf token
     app.use(function (req, res, next) {
         var token = req.csrfToken();
         res.cookie('XSRF-TOKEN', token);

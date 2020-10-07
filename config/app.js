@@ -1,8 +1,8 @@
 module.exports = {
-    name: process.env.APP_NAME,
-    env: process.env.APP_ENV,
-    url: process.env.APP_URL,
-    debug: process.env.APP_DEBUG,
+    name: process.env.APP_NAME || 'espresso',
+    env: process.env.APP_ENV || 'development',
+    url: process.env.APP_URL || 'localhost',
+    debug: process.env.APP_DEBUG || false,
     timezone: 'Asia/Singapore',
     locale: 'en',
-}
+};
