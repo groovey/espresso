@@ -3,7 +3,7 @@ const User = require('@app/models').User;
 
 const controller = {
     // Display a listing of the resource.
-    index: function (req, res) {
+    index: (req, res) => {
 
         User.all()
             .toArray()

@@ -3,7 +3,7 @@ const Product = require('@app/models').Product;
 
 const controller = {
     // Display a listing of the resource.
-    index: function (req, res) {
+    index: (req, res) => {
 
         Product.all()
             .then(([datas]) => {

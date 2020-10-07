@@ -1,8 +1,5 @@
 const program = require('commander');
 const boxen = require('boxen');
-const {
-    version
-} = require('yargs');
 
 module.exports = {
 
