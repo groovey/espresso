@@ -1,11 +1,9 @@
 const program = require('commander');
 const boxen = require('boxen');
 
-class Console {
+module.exports = {
 
-    constructor() {}
-
-    static handle() {
+    index() {
 
         const version = 'v0.0.1';
 
@@ -22,6 +20,4 @@ class Console {
             });
     }
 
-}
-
-module.exports = Console;
+};

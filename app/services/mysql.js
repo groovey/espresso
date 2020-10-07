@@ -1,7 +1,3 @@
-if (!process.env.MYSQL_STATUS) {
-    console.error('test');
-}
-
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({

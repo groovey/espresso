@@ -1,10 +1,8 @@
 const program = require('commander');
 
-class Console {
+module.exports = {
 
-    constructor() {}
-
-    static handle() {
+    index() {
 
         program
             .command('db:seed <source>')
@@ -14,6 +12,4 @@ class Console {
             });
 
     }
-}
-
-module.exports = Console;
+};

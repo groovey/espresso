@@ -1,11 +1,7 @@
 const program = require('commander');
 
-class Console {
-
-    constructor() {}
-
-    static handle() {
-
+module.exports = {
+    index() {
         program
             .command('make:controller <source> [destination]')
             .description('Create a new controller class.')
@@ -23,6 +19,4 @@ class Console {
             });
 
     }
-}
-
-module.exports = Console;
+};

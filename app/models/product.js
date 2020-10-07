@@ -1,4 +1,4 @@
-const db = require('../services').mysql;
+const db = require('@app/services').mysql;
 
 const model = {
 

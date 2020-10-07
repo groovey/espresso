@@ -2,9 +2,9 @@ const program = require('commander');
 
 module.exports = {
     commands: () => {
-        require('./about').handle();
-        require('./db').handle();
-        require('./make').handle();
+        require('./about').index();
+        require('./db').index();
+        require('./make').index();
     },
     run: () => {
         program.parse(process.argv);

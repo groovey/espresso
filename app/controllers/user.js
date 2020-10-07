@@ -1,6 +1,5 @@
 const path = require('path');
-const pathinfo = require('../helpers').pathinfo;
-const User = require('../models').User;
+const User = require('@app/models').User;
 
 const controller = {
     // Display a listing of the resource.
@@ -91,7 +90,7 @@ const controller = {
     },
 
     view(view) {
-        return path.join(pathinfo.resources('views'), 'admin', 'users', view);
+        return path.join(RESOURCES_PATH, 'views', 'admin', 'users', view);
     },
 };
 
