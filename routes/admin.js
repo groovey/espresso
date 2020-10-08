@@ -3,7 +3,7 @@ const auth = require('@app/middlewares').auth.verify;
 const controller = require('@app/controllers').admin;
 
 router.get('/login', controller.auth.login);
-router.post('/login', controller.auth.auth);
+router.post('/login', [], controller.auth.auth);
 router.post('/logout', controller.auth.logout);
 
 router.get('/', auth, controller.dashboard.redirect);
