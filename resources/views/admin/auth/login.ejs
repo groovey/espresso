@@ -1,11 +1,14 @@
+<% if (error.length > 0) { %>
+<div class="">ERROR: <%= error %></div>
+<% } %>
 <form action="/admin/login" method="POST">
     <input type="hidden" name="_method" value="POST">
     <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
     <div>
-        <input type="text" name="username" placeholder="username" value="">
+        <input type="text" name="email" placeholder="email" value="">
     </div>
     <div>
-        <input type="text" name="email" placeholder="email" value="">
+        <input type="password" name="password" placeholder="password" value="">
     </div>
     <div>
         <input type="submit" value="Login">

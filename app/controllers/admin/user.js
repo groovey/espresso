@@ -44,7 +44,7 @@ const controller = {
         User.collection()
             .insertOne(data)
             .then(() => {
-                res.redirect('/admin/users');
+                res.redirect('users');
             }).catch((err) => {
                 console.log(err);
             });

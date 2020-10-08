@@ -23,7 +23,7 @@ module.exports = () => {
     let cwd = process.cwd();
 
     // Middleware for security
-    app.use(helmet());
+    // app.use(helmet());
 
     // Node logger
     app.use(logger('dev'));
