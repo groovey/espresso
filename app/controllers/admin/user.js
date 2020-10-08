@@ -1,6 +1,7 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 const config = require('@config');
+const validation = require('@app/services').validation;
 const User = require('@app/models').User;
 
 const controller = {
@@ -25,12 +26,19 @@ const controller = {
             action: '/admin/users',
             method: 'POST',
             submit: 'Save',
+            error: req.flash('error'),
             user: [],
         });
     },
 
     // Store a newly created resource in storage.
     store: (req, res) => {
+
+        let error = validation.error(req);
+        if (error) {
+            req.flash('error', error);
+            return res.redirect('/admin/users/create');
+        }
 
         let salt = bcrypt.genSaltSync(config.admin.saltRounds);
         let hash = bcrypt.hashSync(req.body.password, salt);
@@ -79,6 +87,7 @@ const controller = {
                     action: '/admin/users/' + id,
                     method: 'PUT',
                     submit: 'Update',
+                    error: req.flash('error'),
                     user: data
                 });
             })
@@ -87,6 +96,13 @@ const controller = {
 
     // Update the specified resource in storage.
     update: (req, res) => {
+
+        let error = validation.error(req);
+        if (error) {
+            req.flash('error', error);
+            console.log(error);
+            return res.redirect('/admin/users/' + req.params.id + '/edit');
+        }
 
         let password = req.body.password;
 

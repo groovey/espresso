@@ -12,10 +12,10 @@ router.get('/dashboard', auth, controller.dashboard.index);
 
 router.get('/users', auth, controller.user.index);
 router.get('/users/create', auth, controller.user.create);
-router.post('/users', auth, controller.user.store);
+router.post('/users', [auth, ...request.user.rules()], controller.user.store);
 router.get('/users/:id', auth, controller.user.show);
 router.get('/users/:id/edit', auth, controller.user.edit);
-router.put('/users/:id', auth, controller.user.update);
+router.put('/users/:id', [auth, ...request.user.rules()], controller.user.update);
 router.delete('/users/:id', auth, controller.user.destroy);
 
 router.get('/products', auth, controller.product.index);
