@@ -1,6 +1,5 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
-const config = require('@config');
 const User = require('@app/models').User;
 
 const controller = {
