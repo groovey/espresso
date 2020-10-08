@@ -1,6 +1,7 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 const User = require('@app/models').User;
+const validation = require('@app/services').validation;
 
 const controller = {
 
@@ -18,6 +19,12 @@ const controller = {
 
     auth: (req, res) => {
 
+        let error = validation.error(req);
+        if (error) {
+            req.flash('error', error);
+            return res.redirect('/admin/login');
+        }
+
         let cond = {
             email: req.body.email
         };
@@ -28,7 +35,6 @@ const controller = {
                 if (data) {
                     bcrypt.compare(req.body.password, data.password)
                         .then(function (result) {
-
                             if (result) {
                                 req.session.user = data;
                                 res.redirect('/admin/dashboard');
@@ -36,7 +42,6 @@ const controller = {
                                 req.flash('error', 'Invalid email or password.');
                                 res.redirect('/admin/login');
                             }
-
                         });
                 } else {
                     req.flash('error', 'Invalid email or password.');

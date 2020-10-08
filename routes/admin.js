@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const auth = require('@app/middlewares').auth.verify;
 const controller = require('@app/controllers').admin;
+const request = require('@app/requests');
 
 router.get('/login', controller.auth.login);
-router.post('/login', [], controller.auth.auth);
+router.post('/login', [request.auth.rules()], controller.auth.auth);
 router.post('/logout', controller.auth.logout);
 
 router.get('/', auth, controller.dashboard.redirect);
