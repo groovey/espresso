@@ -1,4 +1,7 @@
 module.exports = {
-    product: require('./product'),
-    user: require('./user')
+    admin: {
+        auth: require('./admin/auth'),
+        user: require('./admin/user'),
+        product: require('./admin/product'),
+    }
 };

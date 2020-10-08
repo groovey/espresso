@@ -1,9 +1,20 @@
 const router = require('express').Router();
-const controller = require('@app/controllers');
+const controller = require('@app/controllers').admin;
 
 router.get('/dashboard', (req, res) => {
     res.send('Home Dashboard');
 });
+
+router.get('/login', controller.auth.login);
+router.post('/login', controller.auth.auth);
+
+router.get('/users', controller.user.index);
+router.get('/users/create', controller.user.create);
+router.post('/users', controller.user.store);
+router.get('/users/:id', controller.user.show);
+router.get('/users/:id/edit', controller.user.edit);
+router.put('/users/:id', controller.user.update);
+router.delete('/users/:id', controller.user.destroy);
 
 router.get('/products', controller.product.index);
 router.get('/products/create', controller.product.create);
@@ -13,12 +24,5 @@ router.get('/products/:id/edit', controller.product.edit);
 router.put('/products/:id', controller.product.update);
 router.delete('/products/:id', controller.product.destroy);
 
-router.get('/users', controller.user.index);
-router.get('/users/create', controller.user.create);
-router.post('/users', controller.user.store);
-router.get('/users/:id', controller.user.show);
-router.get('/users/:id/edit', controller.user.edit);
-router.put('/users/:id', controller.user.update);
-router.delete('/users/:id', controller.user.destroy);
 
 module.exports = router;

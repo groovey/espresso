@@ -1,4 +1,6 @@
 const path = require('path');
+const bcrypt = require('bcrypt');
+const config = require('@config');
 const User = require('@app/models').User;
 
 const controller = {
@@ -30,9 +32,13 @@ const controller = {
     // Store a newly created resource in storage.
     store: (req, res) => {
 
+        let salt = bcrypt.genSaltSync(config.admin.saltRounds);
+        let hash = bcrypt.hashSync(req.body.password, salt);
+
         let data = {
             name: req.body.name,
-            email: req.body.email
+            email: req.body.email,
+            password: hash,
         };
 
         User.collection()
@@ -42,7 +48,6 @@ const controller = {
             }).catch((err) => {
                 console.log(err);
             });
-
     },
 
     // Display the specified resource.
@@ -83,6 +88,8 @@ const controller = {
     // Update the specified resource in storage.
     update: (req, res) => {
 
+        let password = req.body.password;
+
         let cond = {
             _id: User.id(req.params.id)
         };
@@ -93,6 +100,12 @@ const controller = {
                 email: req.body.email
             }
         };
+
+        if (password) {
+            let salt = bcrypt.genSaltSync(config.admin.saltRounds);
+            let hash = bcrypt.hashSync(password, salt);
+            data.$set.password = hash;
+        }
 
         User.collection()
             .updateOne(cond, data)

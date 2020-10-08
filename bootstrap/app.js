@@ -97,21 +97,16 @@ module.exports = () => {
 
         db() {
             const mongo = require('@app/services').mongo;
-            return mongo.init();
+            mongo.init();
         },
 
         run() {
 
-            this.db()
-                .then(() => {
+            this.db();
 
-                    app.listen(port, () => {
-                        console.log('Server running at ' + chalk.bgBlue(hostname + ':' + port));
-                    });
-
-                }).catch((err) => {
-                    console.log(err);
-                });
+            app.listen(port, () => {
+                console.log('Server running at ' + chalk.bgBlue(hostname + ':' + port));
+            });
         }
 
     };

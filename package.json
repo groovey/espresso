@@ -6,6 +6,7 @@
     "dependencies": {
         "async": "^3.2.0",
         "axios": "^0.20.0",
+        "bcrypt": "^5.0.0",
         "boxen": "^4.2.0",
         "chalk": "^4.1.0",
         "colors": "^1.4.0",
