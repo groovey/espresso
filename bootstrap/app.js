@@ -80,7 +80,7 @@ module.exports = () => {
     });
 
     // Make global variables and functions
-    app.use(require('./globals'));
+    app.use(require('./global'));
 
     return {
 
