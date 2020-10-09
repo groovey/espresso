@@ -13,7 +13,10 @@ const service = {
         results = validationResult(REQUEST);
         if (!results.isEmpty()) {
             msg = results.array()[0].msg;
-            this.flashErrors(results.array());
+
+            if (REQUEST.url != '/login') {
+                this.flashErrors(results.array());
+            }
         }
 
         return msg;

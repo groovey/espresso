@@ -2,12 +2,16 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const User = require('@app/models').User;
 const validator = require('@app/helpers').validator;
+const request = require('@app/helpers').request;
 
 const controller = {
 
     login: (req, res) => {
         res.render(controller.view('login'), {
-            error: req.flash('error')
+            error: req.flash('error'),
+            user: {
+                email: request.old('email')
+            }
         });
     },
 
@@ -22,6 +26,7 @@ const controller = {
         let error = validator.validate(req);
         if (error) {
             req.flash('error', error);
+            request.session.reflash();
             return res.redirect('/admin/login');
         }
 
@@ -37,15 +42,17 @@ const controller = {
                         .then(function (result) {
                             if (result) {
                                 req.session.user = data;
-                                res.redirect('/admin/dashboard');
+                                return res.redirect('/admin/dashboard');
                             } else {
                                 req.flash('error', 'Invalid email or password.');
-                                res.redirect('/admin/login');
+                                request.session.reflash();
+                                return res.redirect('/admin/login');
                             }
                         });
                 } else {
                     req.flash('error', 'Invalid email or password.');
-                    res.redirect('/admin/login');
+                    request.session.reflash();
+                    return res.redirect('/admin/login');
                 }
             })
             .catch(err => console.log(err));
