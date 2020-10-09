@@ -11,11 +11,6 @@ const model = {
     collection() {
         return mongo.connect().collection(this.table);
     },
-
-    all() {
-        return this.collection().find({});
-    },
-
 };
 
 module.exports = model;

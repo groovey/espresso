@@ -1,14 +1,15 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 const config = require('@config');
-const validation = require('@app/services').validation;
+const validator = require('@app/services').validator;
 const User = require('@app/models').User;
 
 const controller = {
     // Display a listing of the resource.
     index: (req, res) => {
 
-        User.all()
+        User.collection()
+            .find({})
             .toArray()
             .then((datas) => {
                 res.render(controller.view('index'), {
@@ -34,7 +35,7 @@ const controller = {
     // Store a newly created resource in storage.
     store: (req, res) => {
 
-        let error = validation.error(req);
+        let error = validator.error(req);
         if (error) {
             req.flash('error', error);
             return res.redirect('/admin/users/create');
@@ -97,10 +98,9 @@ const controller = {
     // Update the specified resource in storage.
     update: (req, res) => {
 
-        let error = validation.error(req);
+        let error = validator.error(req);
         if (error) {
             req.flash('error', error);
-            console.log(error);
             return res.redirect('/admin/users/' + req.params.id + '/edit');
         }
 

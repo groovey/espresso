@@ -1,15 +1,11 @@
-let myFirstPromise = new Promise((resolve, reject) => {
-    setTimeout(function () {
-        // resolve("Success!");
-        reject('Fail on error');
-    }, 250);
+let promise = new Promise((resolve, reject) => {
+    // resolve("Success!");
+    reject('Fail on error');
 });
 
-myFirstPromise.then((successMessage) => {
+promise.then((successMessage) => {
     console.log("Yay! " + successMessage);
-});
-
-myFirstPromise.catch((error) => {
-    new Error("Whoops!");
-    // console.log("Ouch! " + error);
+}).catch((error) => {
+    // throw new Error("Whoops!");
+    console.log(error);
 });

@@ -1,7 +1,7 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 const User = require('@app/models').User;
-const validation = require('@app/services').validation;
+const validator = require('@app/services').validator;
 
 const controller = {
 
@@ -19,7 +19,7 @@ const controller = {
 
     auth: (req, res) => {
 
-        let error = validation.error(req);
+        let error = validator.error(req);
         if (error) {
             req.flash('error', error);
             return res.redirect('/admin/login');
