@@ -112,7 +112,7 @@ const controller = {
         let error = validator.validate();
         if (error) {
             req.flash('error', error);
-            return controller.edit(req, res);
+            return res.redirect('/admin/users/' + req.params.id + '/edit');
         }
 
         let password = req.body.password;
