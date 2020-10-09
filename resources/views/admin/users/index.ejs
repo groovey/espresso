@@ -17,7 +17,7 @@
 <h3>User Listing</h3>
 
 <p>
-    <a href="users/create">Add User</a>
+    <a href="/admin/users/create">Add User</a>
 </p>
 
 <table style="width: 50%;">
@@ -36,17 +36,17 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
-            <a href="users/<%= user._id %>">Show</a>
+            <a href="/admin/users/<%= user._id %>">Show</a>
         </td>
         <td>
-            <form action="users/<%= user._id %>" method="POST" id="delete_<%= user._id %>">
+            <form action="/admin/users/<%= user._id %>" method="POST" id="delete_<%= user._id %>">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
                 <input type="submit" value="Delete">
             </form>
         </td>
         <td>
-            <a href="users/<%= user._id %>/edit">Edit</a>
+            <a href="/admin/users/<%= user._id %>/edit">Edit</a>
         </td>
     </tr>
     <% }) %>

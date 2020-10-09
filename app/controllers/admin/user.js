@@ -6,9 +6,9 @@ const request = require('@app/helpers').request;
 const User = require('@app/models').User;
 
 const controller = {
+
     // Display a listing of the resource.
     index: (req, res) => {
-
         User.collection()
             .find({})
             .toArray()
@@ -23,8 +23,8 @@ const controller = {
 
     // Show the form for creating a new resource.
     create: (req, res) => {
-
         res.render(controller.view('entry'), {
+            validator: validator,
             title: 'User Add',
             action: '/admin/users',
             method: 'POST',
@@ -34,16 +34,17 @@ const controller = {
                 name: request.old('name'),
                 email: request.old('email'),
             },
+
         });
     },
 
     // Store a newly created resource in storage.
     store: (req, res) => {
 
-        let error = validator.validate(req);
+        let error = validator.validate();
         if (error) {
             req.flash('error', error);
-            return controller.create(req, res);
+            return res.redirect('/admin/users/create');
         }
 
         let salt = bcrypt.genSaltSync(config.admin.saltRounds);
@@ -88,7 +89,9 @@ const controller = {
         User.collection()
             .findOne(id)
             .then((data) => {
+
                 res.render(controller.view('entry'), {
+                    validator: validator,
                     title: 'User Edit',
                     action: '/admin/users/' + id,
                     method: 'PUT',
@@ -106,7 +109,7 @@ const controller = {
     // Update the specified resource in storage.
     update: (req, res) => {
 
-        let error = validator.validate(req);
+        let error = validator.validate();
         if (error) {
             req.flash('error', error);
             return controller.edit(req, res);

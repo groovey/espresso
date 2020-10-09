@@ -7,6 +7,7 @@ const request = {
     store() {
         return [
             validator.required('name'),
+            validator.required('email'),
             validator.email('email'),
             this.uniqueEmail(),
             validator.required('password'),

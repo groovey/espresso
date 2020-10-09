@@ -5,24 +5,37 @@ const {
     validationResult
 } = require('express-validator');
 
-let errors = [];
 
 const service = {
 
-    validate(req) {
+    validate() {
 
         let msg;
 
-        errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            msg = errors.array()[0].msg;
+        results = validationResult(REQUEST);
+        if (!results.isEmpty()) {
+            msg = results.array()[0].msg;
+            this.toFlash(results.array());
         }
-
         return msg;
     },
 
-    errors() {
-        return errors;
+    toFlash(errors) {
+        let datas = {};
+
+        errors.forEach((element) => {
+            if (!datas[element.param]) {
+                datas[element.param] = element.msg;
+            }
+        });
+
+        Object.entries(datas).forEach(([key, value]) => {
+            REQUEST.flash('error.' + key, value);
+        });
+    },
+
+    error(field) {
+        return REQUEST.flash('error.' + field);
     },
 
     required(field) {
