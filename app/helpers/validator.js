@@ -5,22 +5,22 @@ const {
     validationResult
 } = require('express-validator');
 
-
 const service = {
 
     validate() {
 
         let msg;
-
         results = validationResult(REQUEST);
         if (!results.isEmpty()) {
             msg = results.array()[0].msg;
-            this.toFlash(results.array());
+            this.flashErrors(results.array());
         }
+
         return msg;
     },
 
-    toFlash(errors) {
+    flashErrors(errors) {
+
         let datas = {};
 
         errors.forEach((element) => {
@@ -66,7 +66,6 @@ const service = {
         return body(field).custom((value, {
             req
         }) => {
-
             if (value !== req.body.password_confirmation) {
                 return Promise.reject('Password confirmation does not match password');
             }

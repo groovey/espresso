@@ -9,6 +9,7 @@ const controller = {
 
     // Display a listing of the resource.
     index: (req, res) => {
+
         User.collection()
             .find({})
             .toArray()
@@ -23,6 +24,7 @@ const controller = {
 
     // Show the form for creating a new resource.
     create: (req, res) => {
+
         res.render(controller.view('entry'), {
             validator: validator,
             title: 'User Add',
@@ -34,7 +36,6 @@ const controller = {
                 name: request.old('name'),
                 email: request.old('email'),
             },
-
         });
     },
 
@@ -44,6 +45,7 @@ const controller = {
         let error = validator.validate();
         if (error) {
             req.flash('error', error);
+            request.session.reflash();
             return res.redirect('/admin/users/create');
         }
 
@@ -59,6 +61,7 @@ const controller = {
         User.collection()
             .insertOne(data)
             .then(() => {
+                request.session.clear();
                 res.redirect('users');
             }).catch((err) => {
                 console.log(err);
@@ -89,7 +92,6 @@ const controller = {
         User.collection()
             .findOne(id)
             .then((data) => {
-
                 res.render(controller.view('entry'), {
                     validator: validator,
                     title: 'User Edit',
@@ -112,15 +114,14 @@ const controller = {
         let error = validator.validate();
         if (error) {
             req.flash('error', error);
+            request.session.reflash();
             return res.redirect('/admin/users/' + req.params.id + '/edit');
         }
 
         let password = req.body.password;
-
         let cond = {
             _id: User.id(req.params.id)
         };
-
         let data = {
             $set: {
                 name: req.body.name,
@@ -137,6 +138,7 @@ const controller = {
         User.collection()
             .updateOne(cond, data)
             .then(() => {
+                request.session.clear();
                 res.redirect('/admin/users');
             })
             .catch(console.log);

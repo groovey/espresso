@@ -86,9 +86,6 @@ module.exports = () => {
         next();
     });
 
-    // Middleware req.body to flash
-    app.use(require('./flash'));
-
     return {
 
         routes() {
