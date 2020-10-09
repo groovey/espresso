@@ -1,0 +1,1 @@
+The opinionated laravel version of nodejs.
