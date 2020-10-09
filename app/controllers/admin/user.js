@@ -29,6 +29,10 @@ const controller = {
             submit: 'Save',
             error: req.flash('error'),
             user: [],
+            old: {
+                name: req.body.name,
+
+            }
         });
     },
 
@@ -38,7 +42,17 @@ const controller = {
         let error = validator.error(req);
         if (error) {
             req.flash('error', error);
-            return res.redirect('/admin/users/create');
+            // return res.redirect('/admin/users/create');
+            // return res.render(controller.view('entry'), {
+            //     title: 'User Add',
+            //     action: '/admin/users',
+            //     method: 'POST',
+            //     submit: 'Save',
+            //     error: req.flash('error'),
+            //     user: [],
+            // });
+
+            return controller.create(req, res);
         }
 
         let salt = bcrypt.genSaltSync(config.admin.saltRounds);
