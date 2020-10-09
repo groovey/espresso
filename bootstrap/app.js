@@ -79,6 +79,13 @@ module.exports = () => {
         next();
     });
 
+    // Make global variables and functions
+    app.use(function (req, res, next) {
+        global.REQUEST = req;
+        global.RESPONSE = res;
+        next();
+    });
+
     return {
 
         routes() {

@@ -5,13 +5,15 @@ const {
     validationResult
 } = require('express-validator');
 
+let errors = [];
+
 const service = {
 
-    error(req) {
+    validate(req) {
 
         let msg;
 
-        const errors = validationResult(req);
+        errors = validationResult(req);
         if (!errors.isEmpty()) {
             msg = errors.array()[0].msg;
         }
@@ -19,12 +21,16 @@ const service = {
         return msg;
     },
 
+    errors() {
+        return errors;
+    },
+
     required(field) {
         return body(field).not().isEmpty().trim().escape().withMessage(`The ${field} field is required.`);
     },
 
     email(field) {
-        return body(field).isEmail().normalizeEmail().withMessage('Invalid email address');
+        return body(field).isEmail().withMessage('Invalid email address');
     },
 
     min(field, value) {

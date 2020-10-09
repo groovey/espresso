@@ -1,7 +1,8 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 const config = require('@config');
-const validator = require('@app/services').validator;
+const validator = require('@app/helpers').validator;
+const request = require('@app/helpers').request;
 const User = require('@app/models').User;
 
 const controller = {
@@ -22,36 +23,26 @@ const controller = {
 
     // Show the form for creating a new resource.
     create: (req, res) => {
+
         res.render(controller.view('entry'), {
             title: 'User Add',
             action: '/admin/users',
             method: 'POST',
             submit: 'Save',
             error: req.flash('error'),
-            user: [],
-            old: {
-                name: req.body.name,
-
-            }
+            user: {
+                name: request.old('name'),
+                email: request.old('email'),
+            },
         });
     },
 
     // Store a newly created resource in storage.
     store: (req, res) => {
 
-        let error = validator.error(req);
+        let error = validator.validate(req);
         if (error) {
             req.flash('error', error);
-            // return res.redirect('/admin/users/create');
-            // return res.render(controller.view('entry'), {
-            //     title: 'User Add',
-            //     action: '/admin/users',
-            //     method: 'POST',
-            //     submit: 'Save',
-            //     error: req.flash('error'),
-            //     user: [],
-            // });
-
             return controller.create(req, res);
         }
 
@@ -103,7 +94,10 @@ const controller = {
                     method: 'PUT',
                     submit: 'Update',
                     error: req.flash('error'),
-                    user: data
+                    user: {
+                        name: request.old('name', data.name),
+                        email: request.old('email', data.email),
+                    },
                 });
             })
             .catch(console.log);
@@ -112,10 +106,10 @@ const controller = {
     // Update the specified resource in storage.
     update: (req, res) => {
 
-        let error = validator.error(req);
+        let error = validator.validate(req);
         if (error) {
             req.flash('error', error);
-            return res.redirect('/admin/users/' + req.params.id + '/edit');
+            return controller.edit(req, res);
         }
 
         let password = req.body.password;

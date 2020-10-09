@@ -1,6 +1,6 @@
 const body = require('express-validator').body;
 const User = require('@app/models').User;
-const validator = require('@app/services').validator;
+const validator = require('@app/helpers').validator;
 
 const request = {
 
