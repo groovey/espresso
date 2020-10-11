@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const csrf = require('csurf');
 const chalk = require('chalk');
@@ -26,10 +27,23 @@ module.exports = () => {
     // app.use(helmet());
 
     // Node logger
-    app.use(logger('dev'));
+    if (process.env.NODE_ENV != 'production') {
+        var accessLogStream = fs.createWriteStream(path.join(STORAGE_PATH, 'logs', 'access.log'), {
+            flags: 'a'
+        });
+
+        app.use(logger('combined', {
+            stream: accessLogStream
+        }));
+
+    } else {
+        app.use(logger('dev'));
+    }
 
     // Middleware for compressing assets
-    app.use(compression());
+    if (process.env.NODE_ENV == 'production') {
+        app.use(compression());
+    }
 
     // Ejs template engine
     app.set('view engine', 'ejs');
