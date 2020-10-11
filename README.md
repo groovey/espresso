@@ -6,3 +6,4 @@ rest api
 tailwind
 webpack
 cors on api - http://expressjs.com/en/resources/middleware/cors.html
+implement socket io with config.
