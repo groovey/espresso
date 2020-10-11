@@ -77,6 +77,26 @@ const service = {
         });
     },
 
+    // Still needs to be tested
+    // https: //stackoverflow.com/questions/39703624/express-how-to-validate-file-input-with-express-validator
+    image(field) {
+        return body(field).custom((value, filename, {
+            req
+        }) => {
+            var extension = (path.extname(filename)).toLowerCase();
+            switch (extension) {
+                case '.jpg':
+                    return '.jpg';
+                case '.jpeg':
+                    return '.jpeg';
+                case '.png':
+                    return '.png';
+                default:
+                    return false;
+            }
+        });
+    }
+
 };
 
 module.exports = service;
