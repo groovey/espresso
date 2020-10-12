@@ -1,9 +1,7 @@
-const fs = require('fs');
 const path = require('path');
 const csrf = require('csurf');
 const chalk = require('chalk');
 const helmet = require("helmet");
-const logger = require('morgan');
 const express = require('express');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -18,31 +16,17 @@ module.exports = () => {
     // The secret sauce
     let app = express();
     let hostname = process.env.APP_URL;
-    let port = process.env.PORT || '3000';
+    let port = process.env.APP_PORT || '3000';
 
     // Set the root directory
     let cwd = process.cwd();
 
     // Middleware for security
     // app.use(helmet());
-
-    // Node logger
-    if (process.env.NODE_ENV != 'production') {
-        var accessLogStream = fs.createWriteStream(path.join(STORAGE_PATH, 'logs', 'access.log'), {
-            flags: 'a'
-        });
-
-        app.use(logger('combined', {
-            stream: accessLogStream
-        }));
-
-    } else {
-        app.use(logger('dev'));
-    }
-
-    // Middleware for compressing assets
     if (process.env.NODE_ENV == 'production') {
-        app.use(compression());
+        require('./prod')(app);
+    } else {
+        require('./dev')(app);
     }
 
     // Ejs template engine
