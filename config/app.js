@@ -5,4 +5,6 @@ module.exports = {
     debug: process.env.APP_DEBUG || false,
     timezone: 'Asia/Singapore',
     locale: 'en',
+    socketio: 'enabled',
+    graphql: 'enabled',
 };

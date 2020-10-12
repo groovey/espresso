@@ -1,8 +1,11 @@
 const router = require('express').Router();
+const controller = require('@app/controllers');
 
 router.get('/test', (req, res) => {
     res.send(BASE_PATH);
 });
+
+router.get('/chat', controller.chat.index);
 
 router.get('/', (req, res) => {
     res.send('Home');

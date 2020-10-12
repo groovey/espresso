@@ -1,14 +1,13 @@
 const path = require('path');
 const csrf = require('csurf');
 const chalk = require('chalk');
-const helmet = require("helmet");
 const express = require('express');
 const flash = require('connect-flash');
 const session = require('express-session');
-const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const middleware = require('@app/middlewares');
+const config = require('@config');
 require('dotenv').config();
 
 module.exports = () => {
@@ -21,8 +20,6 @@ module.exports = () => {
     // Set the root directory
     let cwd = process.cwd();
 
-    // Middleware for security
-    // app.use(helmet());
     if (process.env.NODE_ENV == 'production') {
         require('./prod')(app);
     } else {
@@ -101,13 +98,25 @@ module.exports = () => {
             mongo.init();
         },
 
+        socket(server) {
+
+            if (config.app.socketio != 'enabled') {
+                return;
+            }
+
+            require('@app/sockets')(server);
+        },
+
         run() {
 
             this.db();
 
-            app.listen(port, () => {
+            let server = app.listen(port, () => {
                 console.log('Server running at ' + chalk.bgBlue(hostname + ':' + port));
             });
+
+            this.socket(server);
+
         }
 
     };

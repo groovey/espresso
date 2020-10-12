@@ -1,4 +1,5 @@
 module.exports = {
+    chat: require('./chat'),
     admin: {
         auth: require('./admin/auth'),
         dashboard: require('./admin/dashboard'),
