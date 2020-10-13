@@ -1,4 +1,5 @@
 const program = require('commander');
+const mongo = require('@app/services').mongo;
 
 module.exports = {
 
@@ -8,8 +9,13 @@ module.exports = {
         require('./make').index();
     },
 
+    db() {
+        return mongo.init();
+    },
+
     run() {
-        program.parse(process.argv);
-        process.exit(1);
+        this.db().then(() => {
+            program.parse(process.argv);
+        }).catch(err => console.log(err))
     }
 };

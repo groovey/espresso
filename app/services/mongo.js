@@ -23,14 +23,13 @@ const service = {
             useUnifiedTopology: true
         }).connect();
 
-        client.then(db => {
+        client.then((db) => {
                 database = db.db(process.env.MONGO_DATABASE);
+                console.log(chalk.green('Sucessfully connected to the mongo server.'));
             })
             .catch(err => {
                 console.log(err);
             });
-
-        console.log(chalk.green('Sucessfully connected to the mongo server.'));
 
         return client;
     },

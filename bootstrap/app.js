@@ -99,11 +99,9 @@ module.exports = () => {
         },
 
         socket(server) {
-
             if (config.app.socketio != 'enabled') {
                 return;
             }
-
             require('@app/sockets')(server);
         },
 

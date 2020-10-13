@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
+// Node alias
+require('module-alias/register');
+
+// Env variables
+require('dotenv').config();
+
+// The application path directories
+require('./bootstrap/path')(__dirname);
+
 // The engine of the cli app
 const app = require('./app/console');
 
