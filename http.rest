@@ -1,25 +1,19 @@
-### products.index
-GET http://localhost:3000/admin/products
+### Api user
+GET http://localhost/api/v1/users
 
-### products.create
-GET http://localhost:3000/admin/products/create
+### Login - from
+GET http://localhost/admin/login
 
-### products.store
-POST http://localhost:3000/admin/products
+### Login
+POST http://localhost/admin/login
 content-type: application/json
 
 {
-    "name": "the unique product" 
+    "_csrf" : "7xgBtnHp-8t73rRSWmn7dFunpkLqa4W1XlNg",
+    "username": "admin@gmail.com" , 
+    "password" : "password"
 }
 
-### products.show
-GET http://localhost:3000/admin/products/1
-
-### products.edit
-GET http://localhost:3000/admin/products/1/edit
-
-### products.update
-PUT http://localhost:3000/admin/products/1
-
-### products.delete
-DELETE http://localhost:3000/admin/products/1
+### All users
+GET http://localhost/admin/users
+ 

@@ -1,7 +1,8 @@
 // Tutorial on javascript classes
 
-const { random } = require("lodash");
-
+const {
+    random
+} = require("lodash");
 
 // Class names - unnamed
 // outputs: "Rectangle"
@@ -82,8 +83,9 @@ console.log(table.height);
 
 // Private properties using #
 class Chair {
-    #height = 0;
-    #width;
+    #
+    height = 0;#
+    width;
     area;
     description = 'This is the chair description';
     constructor(width, height) {
@@ -104,25 +106,25 @@ console.log(chair.description);
 
 // Combining all it up
 class Cabinet {
-    
+
     constructor() {}
 
     static find(id) {
-        console.log('finding id=', id);  
-        
+        console.log('finding id=', id);
+
         this.id = id;
         this.width = 111;
         this.height = 222;
 
-        return this;     
+        return this;
     }
 
     save() {
         console.log('saving...');
         let width = this.width;
         let height = this.height;
-        console.log('width =',  width);
-        console.log('height =',  height);             
+        console.log('width =', width);
+        console.log('height =', height);
         this.id = 5;
         return this.id;
     }
