@@ -13,5 +13,11 @@ app.routes();
 // The error status pages
 app.error();
 
+// Connect to mongo
+app.db();
+
 // Run the application
-app.run();
+server = app.run();
+
+// Run socket.io
+app.socket(server);

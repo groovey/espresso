@@ -107,14 +107,11 @@ module.exports = () => {
 
         run() {
 
-            this.db();
-
             let server = app.listen(port, () => {
                 console.log('Server running at ' + chalk.bgBlue(hostname + ':' + port));
             });
 
-            this.socket(server);
-
+            return server;
         }
 
     };
