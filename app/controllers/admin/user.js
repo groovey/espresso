@@ -4,22 +4,36 @@ const config = require('@config');
 const validator = require('@app/helpers').validator;
 const request = require('@app/helpers').request;
 const User = require('@app/models').User;
+const pagination = require('@app/services').pagination;
 
 const controller = {
 
     // Display a listing of the resource.
-    index: (req, res) => {
+    index: async (req, res) => {
 
-        User.collection()
-            .find({})
-            .toArray()
-            .then((datas) => {
-                res.render(controller.view('index'), {
-                    users: datas
-                });
-            }).catch((err) => {
-                console.log(err);
-            });
+        let {
+            skip,
+            currentPage,
+            perPage
+        } = pagination.paginate();
+
+        let sort = {
+            _id: -1
+        };
+
+        let total = await User.collection().find({}).count();
+        let datas = await User.collection().find({}).sort(sort).skip(skip).limit(perPage).toArray();
+
+        res.render(controller.view('index'), {
+            users: datas,
+            pagination: {
+                total: total,
+                currentPage: currentPage,
+                lastPage: pagination.lastPage(total),
+                url: '/admin/users?page=',
+            }
+        });
+
     },
 
     // Show the form for creating a new resource.
