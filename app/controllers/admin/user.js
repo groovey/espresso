@@ -13,9 +13,8 @@ const controller = {
 
         let {
             skip,
-            currentPage,
             perPage
-        } = pagination.paginate();
+        } = pagination.init('/admin/users?page=');
 
         let sort = {
             _id: -1
@@ -24,14 +23,11 @@ const controller = {
         let total = await User.collection().find({}).count();
         let datas = await User.collection().find({}).sort(sort).skip(skip).limit(perPage).toArray();
 
+        pagination.paginate(total);
+
         res.render(controller.view('index'), {
             users: datas,
-            pagination: {
-                total: total,
-                currentPage: currentPage,
-                lastPage: pagination.lastPage(total),
-                url: '/admin/users?page=',
-            }
+            pagination: pagination
         });
 
     },

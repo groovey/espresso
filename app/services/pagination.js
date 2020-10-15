@@ -3,11 +3,13 @@ const path = require('path');
 const service = {
 
     perPage: 1,
-    currentPage: 1,
     total: 0,
+    currentPage: 1,
+    lastPage: 0,
 
-    paginate() {
+    init(url) {
 
+        this.url = url;
         this.currentPage = parseInt(REQUEST.query.page) || 1;
         let skip = (this.currentPage - 1) * parseInt(this.perPage);
 
@@ -19,9 +21,9 @@ const service = {
 
     },
 
-    lastPage(total) {
-        return Math.ceil(total / this.perPage);
-    }
+    paginate(total) {
+        this.lastPage = Math.ceil(total / this.perPage);
+    },
 
 };
 
