@@ -5,9 +5,10 @@ const service = {
 
     perPage: 1,
     currentPage: 1,
-    totalPages: 1,
+    totalPage: 1,
     startPage: 1,
     endPage: 1,
+    hasFirstLast: false,
 
     init(url) {
 
@@ -25,15 +26,20 @@ const service = {
     paginate(total) {
 
         currentPage = this.currentPage;
-        totalPages = Math.ceil(total / this.perPage);
+        totalPage = Math.ceil(total / this.perPage);
+
+        if (currentPage > totalPage) {
+            currentPage = totalPage;
+        }
 
         startPage = (currentPage < 5) ? 1 : currentPage - 4;
         endPage = 8 + startPage;
-        endPage = (totalPages < endPage) ? totalPages : endPage;
+        endPage = (totalPage < endPage) ? totalPage : endPage;
         diff = startPage - endPage + 8;
         startPage -= (startPage - diff > 0) ? diff : 0;
 
-        this.totalPages = totalPages;
+        this.currentPage = currentPage;
+        this.totalPage = totalPage;
         this.startPage = startPage;
         this.endPage = endPage;
     },
