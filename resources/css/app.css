@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.w-64 {
+    width: 16rem;
+}
+
+.w-80 {
+    width: 18rem;
+}
+
+.w-96 {
+    width: 24rem;
+}
+
+@import "custom-forms.css";
