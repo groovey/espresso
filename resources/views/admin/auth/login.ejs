@@ -1,16 +1,92 @@
-<% if (error.length > 0) { %>
-<div class="">ERROR: <%= error %></div>
-<% } %>
-<form action="/admin/login" method="POST">
-    <input type="hidden" name="_method" value="POST">
-    <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-    <div>
-        <input type="text" name="email" placeholder="email" value="<%= user.email %>">
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="password" value="">
-    </div>
-    <div>
-        <input type="submit" value="Login">
-    </div>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="">
+
+    <title>Login</title>
+
+    <script src="/js/app.js"></script>
+
+</head>
+
+<body class="font-sans text-sm bg-gray-50 text-gray-700 antialiased">
+
+    <form method="POST" action="/admin/login">
+
+        <input type="hidden" name="_method" value="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
+
+        <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-96 -mt-20">
+                <div>
+                    <h2 class="mb-8 text-center text-2xl leading-5 font-extrabold text-gray-600">
+                        Sign in to your account
+                    </h2>
+                </div>
+
+                <% if (error.length > 0) { %>
+                <div class="text-center mb-4 text-danger">
+                    <%= error %>
+                </div>
+                <% } %>
+
+                <div class="rounded-md shadow-sm">
+                    <div>
+                        <input aria-label="Email address" name="email" type="email" autocomplete="email" required
+                            autofocus
+                            class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:z-10 sm:text-sm sm:leading-5"
+                            placeholder="Email address" value="<%= user.email %>">
+                    </div>
+                    <div class="-mt-px">
+                        <input aria-label="Password" name="password" type="password" required required
+                            autocomplete="current-password"
+                            class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-600 rounded-b-md focus:outline-none focus:z-10 sm:text-sm sm:leading-5"
+                            placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember" type="checkbox"
+                            class="form-checkbox h-4 w-4 focus:outline-none text-primary transition duration-150 ease-in-out">
+                        <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-600 focus:outline-none">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="text-sm leading-5">
+                        <a href=""
+                            class="mr-2 text-gray-600 focus:outline-none focus:underline transition ease-in-out duration-150">
+                            Forgot your password?
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <button type="submit"
+                        class="px-4 py-2 inline-block rounded font-semibold transition duration-300 ease-in-out cursor-pointer focus:outline-none focus:shadow-outline bg-primary hover:bg-primary-dark border border-primary text-white w-full text-left self-center text-base focus:outline-none">
+                        <div class="flex">
+                            <svg class="h-5 w-5 inline-block transition ease-in-out duration-150 self-center"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-center w-full -ml-5">Sign in</span>
+                        </div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+ 
+</body>
+
+</html>
