@@ -7,5 +7,4 @@
 .env.backup
 npm-debug.log
 yarn-error.log
-*.code-workspace
 /.vscode
