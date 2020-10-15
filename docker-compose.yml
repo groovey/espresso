@@ -1,0 +1,101 @@
+version: "3.1"
+
+#Docker Networks
+networks:
+  app-espresso:
+    driver: bridge
+#Volumes
+volumes:
+  MYSQL:
+    driver: local
+  REDIS:
+    driver: local
+
+services:
+  # Mysql service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_8.0
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: espresso
+      MYSQL_ROOT_PASSWORD: webdevel
+    volumes:
+      - MYSQL:/var/lib/mysql/
+      - //DATA/espresso/docker/mysql/8.0/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - app-espresso
+
+  # Phpmyadmin service
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - app-espresso
+    depends_on:
+      - mysql
+
+  # Redis service
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - REDIS:/data
+    networks:
+      - app-espresso 
+
+  # # Node package manager service
+  # npm:
+  #   image: node:12.18.3
+  #   container_name: npm
+  #   working_dir: /var/www/espresso
+  #   volumes:
+  #     - //DATA:/var/www
+  #   entrypoint: ["npm"] 
+
+  # # Webserver service
+  # nginx:
+  #   image: nginx:1.18
+  #   container_name: nginx_1.18
+  #   restart: unless-stopped
+  #   tty: true
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - //DATA:/var/www
+  #     - //DATA/espresso/docker/nginx/app.conf:/etc/nginx/conf.d/app.conf
+  #     - //DATA/espresso/docker/nginx/espresso.conf:/etc/nginx/conf.d/espresso.conf
+  #     - //DATA/espresso/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+  #   networks:
+  #     - espresso
+
+ 
+
+  # App service
+  app:
+    image: custom:node_12.18.13
+    build:
+      context: ./docker/node/12.18.14
+      dockerfile: Dockerfile
+    container_name: custom_node_12.18.13
+    env_file: ".env"
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/espresso
+    volumes:
+      - //DATA:/var/www
+    networks:
+      - app-laravel
+    depends_on: 
+      - mysql
