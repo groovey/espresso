@@ -24,6 +24,11 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 ## CLI
 
     $ node artisan
+
+## Webpack usage
+
+    $ npm run build:dev
+    $ npm run build:prod
   
 ## License
 

@@ -1,5 +1,4 @@
 const path = require('path');
-var mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
     entry: path.resolve(__dirname, 'resources', 'js', 'app.js'),

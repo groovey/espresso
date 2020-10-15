@@ -1,7 +1,7 @@
 {
     "name": "nodejs",
     "version": "1.0.0",
-    "description": "Learning NodeJS",
+    "description": "Espresso JS Framework",
     "main": "index.js",
     "dependencies": {
         "async": "^3.2.0",
@@ -56,15 +56,14 @@
         "start": "cross-env supervisor index.js",
         "build": "tailwindcss build resources/css/app.css -o public/css/styles.css",
         "build:dev": "webpack --mode development",
-        "build:prod": "set NODE_ENV=production && webpack --mode production",
-        "build-linux:prod": "export NODE_ENV=production && webpack --mode production"
+        "build:prod": "set NODE_ENV=production && webpack --mode production"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:groovey/espresso.git"
     },
-    "author": "Kim",
-    "license": "ISC",
+    "author": "Harold Kim Cantil",
+    "license": "MIT",
     "_moduleAliases": {
         "@base": ".",
         "@app": "app",
