@@ -23,13 +23,17 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 
 ## CLI
 
-    $ node artisan
+    $ docker-compose exec espresso node artisan
 
-## Webpack usage
+## Webpack
 
-    $ npm run build:dev
-    $ npm run build:prod
+    $ docker-compose exec espresso npm run build:dev
+    $ docker-compose exec espresso npm run build:prod
   
+## Notes
+
+Check out the notes md file for more technical usage.
+
 ## License
 
 The Espresso.js framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

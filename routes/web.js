@@ -7,9 +7,7 @@ router.get('/test', (req, res) => {
 
 router.get('/chat', controller.chat.index);
 
-router.get('/', (req, res) => {
-    res.send('Home');
-});
+router.get('/', controller.home.index);
 
 router.get('/contact', (req, res) => {
     res.render('contact', {});
