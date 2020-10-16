@@ -19,11 +19,8 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 
 ## Installation/Start
     
-    $ docker-compose up -d
-
-    to stop:
-    $ docker-compose down
-
+    $ docker-compose up 
+  
 ## CLI
 
     $ docker-compose exec espresso node artisan
