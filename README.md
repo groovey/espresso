@@ -32,7 +32,7 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
   
 ## Notes
 
-Check out the notes md file for more technical usage.
+Check out the [NOTES](https://github.com/groovey/espresso/blob/master/NOTES.md) file for more technical usage.
 
 ## License
 
