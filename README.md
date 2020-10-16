@@ -17,9 +17,12 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 - Build on top of Express.js. 
 - Crafted with Love.
 
-## Installation
+## Installation/Start
     
     $ docker-compose up -d
+
+    to stop:
+    $ docker-compose down
 
 ## CLI
 
