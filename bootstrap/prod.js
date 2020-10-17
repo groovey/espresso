@@ -1,6 +1,8 @@
 const logger = require('morgan')
 const fs = require('fs')
 const helmet = require('helmet')
+const path = require('path')
+const compression = require('compression')
 
 module.exports = (app) => {
   // Middleware for security

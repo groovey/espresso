@@ -19,7 +19,7 @@ module.exports = () => {
   // Set the root directory
   const cwd = process.cwd()
 
-  if (process.env.NODE_ENV == 'production') {
+  if (process.env.NODE_ENV === 'production') {
     require('./prod')(app)
   } else {
     require('./dev')(app)
@@ -87,7 +87,7 @@ module.exports = () => {
 
     error () {
       app.use(middleware.error.code404)
-      if (process.env.NODE_ENV == 'production') {
+      if (process.env.NODE_ENV === 'production') {
         app.use(middleware.error.code500)
       }
     },
@@ -98,7 +98,7 @@ module.exports = () => {
     },
 
     socket (server) {
-      if (config.app.socketio != 'enabled') {
+      if (config.app.socketio !== 'enabled') {
         return
       }
       require('@app/sockets')(server)
