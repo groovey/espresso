@@ -15,11 +15,14 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 - Mutiple DB support (Mongo, RDBMS, Redis, etc.)
 - Scable and easy to use.
 - Build on top of Express.js. 
+- Using Javascript Standard Style
 - Crafted with Love.
 
-## Installation/Start
+## Installation and Start up
     
     $ docker-compose up 
+
+    Accesss url: http://localhost
   
 ## CLI
 
