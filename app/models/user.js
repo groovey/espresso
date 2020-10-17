@@ -1,16 +1,16 @@
-const mongo = require('@app/services').mongo;
+const mongo = require('@app/services').mongo
 
 const model = {
 
-    table: 'users',
+  table: 'users',
 
-    id(id) {
-        return mongo.id(id);
-    },
+  id (id) {
+    return mongo.id(id)
+  },
 
-    collection() {
-        return mongo.connect().collection(this.table);
-    },
-};
+  collection () {
+    return mongo.connect().collection(this.table)
+  }
+}
 
-module.exports = model;
+module.exports = model

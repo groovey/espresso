@@ -1,4 +1,4 @@
 module.exports = {
-    auth: require('./auth'),
-    error: require('./error'),
-};
+  auth: require('./auth'),
+  error: require('./error')
+}

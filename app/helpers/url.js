@@ -1,16 +1,15 @@
-const url = require('url');
+const url = require('url')
 
 module.exports = {
 
-    full() {
+  full () {
+    req = REQUEST
 
-        req = REQUEST;
+    return url.format({
+      protocol: req.protocol,
+      host: req.get('host'),
+      pathname: req.originalUrl
+    })
+  }
 
-        return url.format({
-            protocol: req.protocol,
-            host: req.get('host'),
-            pathname: req.originalUrl
-        });
-    }
-
-};
+}
