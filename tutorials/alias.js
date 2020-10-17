@@ -1,8 +1,8 @@
-require('module-alias/register');
-var path = require('path');
-const express = require('express');
-const config = require('@config');
+require('module-alias/register')
+var path = require('path')
+const express = require('express')
+const config = require('@config')
 
-console.log(config.app.name);
-console.log(config.app.env);
-console.log(config.app.url);
+console.log(config.app.name)
+console.log(config.app.env)
+console.log(config.app.url)
