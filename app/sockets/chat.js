@@ -1,31 +1,27 @@
 const socket = {
 
-    init(io) {
-        this.io = io.of('/chat');
-        return this;
-    },
+  init (io) {
+    this.io = io.of('/chat')
+    return this
+  },
 
-    start() {
+  start () {
+    this.io.use(function (socket, next) {
+      var handshake = socket.request
+      next()
+    })
 
-        this.io.use(function (socket, next) {
-            var handshake = socket.request;
-            next();
-        });
+    this.io.on('connection', function (socket) {
+      console.log('Chat is connected')
 
-        this.io.on('connection', function (socket) {
+      socket.on('message', function (msg) {
+        console.log('message: ' + msg)
+        this.emit('messages', {
+          message: msg
+        })
+      })
+    })
+  }
+}
 
-            console.log('Chat is connected');
-
-            socket.on("message", function (msg) {
-                console.log('message: ' + msg);
-                this.emit('messages', {
-                    message: msg
-                });
-            });
-
-        });
-
-    }
-};
-
-module.exports = socket;
+module.exports = socket

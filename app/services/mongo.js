@@ -1,50 +1,48 @@
-const chalk = require('chalk');
+const chalk = require('chalk')
 
 const {
-    MongoClient,
-    ObjectId
-} = require('mongodb');
+  MongoClient,
+  ObjectId
+} = require('mongodb')
 
-let client;
-let database;
+let client
+let database
 
 const service = {
 
-    id(id) {
-        return ObjectId(id);
-    },
+  id (id) {
+    return ObjectId(id)
+  },
 
-    init() {
+  init () {
+    const url = process.env.MONGO_HOST
 
-        let url = process.env.MONGO_HOST;
+    client = new MongoClient(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }).connect()
 
-        client = new MongoClient(url, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).connect();
+    client.then((db) => {
+      database = db.db(process.env.MONGO_DATABASE)
+      console.log(chalk.green('Sucessfully connected to the mongo server.'))
+    })
+      .catch(err => {
+        console.log(err)
+      })
 
-        client.then((db) => {
-                database = db.db(process.env.MONGO_DATABASE);
-                console.log(chalk.green('Sucessfully connected to the mongo server.'));
-            })
-            .catch(err => {
-                console.log(err);
-            });
+    return client
+  },
 
-        return client;
-    },
-
-    connect() {
-
-        if (!client) {
-            this.init();
-        }
-
-        if (database) {
-            return database;
-        }
+  connect () {
+    if (!client) {
+      this.init()
     }
 
-};
+    if (database) {
+      return database
+    }
+  }
 
-module.exports = service;
+}
+
+module.exports = service
