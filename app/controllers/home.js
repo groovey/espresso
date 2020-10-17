@@ -1,10 +1,9 @@
-const path = require('path');
+const path = require('path')
 
 const controller = {
 
-    index: (req, res) => {
-
-        let html = `
+  index: (req, res) => {
+    const html = `
 Welcome to Espresso.JS.
 
 login: http://192.168.99.101/admin/login
@@ -28,14 +27,13 @@ Admin: http: //192.168.99.101/admin/dashboard
 
 Crafted with Love: Harold Kim Cantil
         
-`;
-        res.send(html);
+`
+    res.send(html)
+  },
 
-    },
+  view (view) {
+    return path.join(RESOURCES_PATH, 'views', view)
+  }
+}
 
-    view(view) {
-        return path.join(RESOURCES_PATH, 'views', view);
-    },
-};
-
-module.exports = controller;
+module.exports = controller
