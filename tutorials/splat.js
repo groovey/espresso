@@ -1,18 +1,15 @@
-const {
-    body,
-    validationResult
-} = require('express-validator');
+const { body, validationResult } = require('express-validator')
 
-function auth() {
-    console.log('auth is called');
+function auth () {
+  console.log('auth is called')
 }
 
-function validator() {
-    console.log('validator is called');
+function validator () {
+  console.log('validator is called')
 }
 
-let splat = [validator(), body('username').isEmail(), ];
+const splat = [validator(), body('username').isEmail()]
 
-const test = [auth(), ...splat];
+const test = [auth(), ...splat]
 
-console.log(test);
+console.log(test)

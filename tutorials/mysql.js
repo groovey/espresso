@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2')
 
 // mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'webdevel';
 // mysql> FLUSH PRIVILEGES;
@@ -9,14 +9,14 @@ const mysql = require('mysql2');
 // mysql> quit
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'webdevel',
-    database: 'espresso'
-});
-con.promise().query("SELECT * FROM products")
-    .then(([rows, fields]) => {
-        console.log(rows);
-    })
-    .catch(console.log)
-    .then(() => con.end());
+  host: 'localhost',
+  user: 'root',
+  password: 'webdevel',
+  database: 'espresso'
+})
+con.promise().query('SELECT * FROM products')
+  .then(([rows, fields]) => {
+    console.log(rows)
+  })
+  .catch(console.log)
+  .then(() => con.end())
