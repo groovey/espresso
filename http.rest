@@ -1,11 +1,11 @@
 ### Api user
-GET http://localhost/api/v1/users
+GET http://localhost:3000/api/v1/users
 
 ### Login - from
-GET http://localhost/admin/login
+GET http://localhost:3000/admin/login
 
 ### Login
-POST http://localhost/admin/login
+POST http://localhost:3000/admin/login
 content-type: application/json
 
 {
@@ -15,4 +15,4 @@ content-type: application/json
 }
 
 ### All users
-GET http://localhost/admin/users
+GET http://localhost:3000/admin/users
