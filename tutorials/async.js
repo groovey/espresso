@@ -21,10 +21,6 @@ f1().then((result) => {
   })
   .catch(err => console.log('err = ', err))
 
-function output (input) {
-  console.log('output = ', input)
-}
-
 function say () {
   return new Promise(resolve => {
     setTimeout(() => {

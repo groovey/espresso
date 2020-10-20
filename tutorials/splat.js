@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator')
+const { body } = require('express-validator')
 
 function auth () {
   console.log('auth is called')

@@ -1,20 +1,13 @@
-const express = require('express')
 const fs = require('fs')
-const path = require('path')
-const app = express()
 
 class Tester {
-  constructor () {}
-
   // async function. and thru a callback
   read (callback) {
     fs.readFile('users.json', (err, data) => {
       if (!err) {
         const json = JSON.parse(data)
         callback(json)
-        return
       }
-      callback([])
     })
   }
 

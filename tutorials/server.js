@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
   const url = req.url
   const method = req.method
 
-  if (url == '/') {
+  if (url === '/') {
     res.write('<form action="/message" name="form" method="POST">')
     res.write('<input name="message" value="">')
     res.write('<input type="submit" value="Send the message">')
@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
     res.write('<div style="background-color:yellow">msg = ' + users + '</div>')
 
     return res.end()
-  } else if (url == '/message' && method == 'POST') {
+  } else if (url === '/message' && method === 'POST') {
     const body = []
     req.on('data', (data) => {
       body.push(data)

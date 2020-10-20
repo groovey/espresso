@@ -15,7 +15,11 @@ app.get('/', (req, res) => {
 
 app.post('/process', (req, res) => {
   var form = new formidable.IncomingForm()
+
   form.parse(req, function (err, fields, files) {
+    if (err) {
+      console.log(err)
+    }
     var oldpath = files.data.path
     var newpath = path.join(pathinfo.resources('docs'), files.data.name)
 

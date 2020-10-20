@@ -1,12 +1,8 @@
 // Testing modern javascripts
 
 const express = require('express')
-const fs = require('fs')
 const app = express()
 const port = 3000
-
-// To read files, use this instead of require
-var json = JSON.parse(fs.readFileSync('users.json', 'utf8'))
 
 // Writing objects
 const person = {
@@ -34,7 +30,7 @@ console.log(sports.map(hobby => 'SPORTS : ' + hobby))
 
 // Spread operator ...
 // This is copy the person object
-newPerson = {
+const newPerson = {
   ...person
 }
 newPerson.name = 'Sam'

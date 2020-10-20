@@ -1,6 +1,6 @@
 const promise = new Promise((resolve, reject) => {
-  // resolve("Success!");
-  reject('Fail on error')
+  resolve('Success!')
+  // reject('Fail on error')
 })
 
 promise.then((successMessage) => {

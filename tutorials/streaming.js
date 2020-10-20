@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
                         width: 100%;
                         object-fit: fill;
                         position: absolute;
-                    }                    
+                    }
                 </style>
 
                 <div class="row">
