@@ -17,7 +17,7 @@ app.error()
 app.db()
 
 // Run the application
-server = app.run()
+const server = app.run()
 
 // Run socket.io
 app.socket(server)
