@@ -1,7 +1,4 @@
 const path = require('path')
-const validator = require('@app/helpers').validator
-const request = require('@app/helpers').request
-const User = require('@app/models').User
 
 const controller = {
 
@@ -10,7 +7,7 @@ const controller = {
   },
 
   view (view) {
-    return path.join(RESOURCES_PATH, 'views', view)
+    return path.join(global.RESOURCES_PATH, 'views', view)
   }
 }
 

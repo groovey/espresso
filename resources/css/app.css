@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 .w-64 {
-    width: 16rem;
+  width: 16rem;
 }
 
 .w-80 {
-    width: 18rem;
+  width: 18rem;
 }
 
 .w-96 {
-    width: 24rem;
+  width: 24rem;
 }
 
-@import "custom-forms.css";
+@import 'custom-forms.css';
