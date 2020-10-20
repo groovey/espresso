@@ -2,7 +2,7 @@ const router = require('express').Router()
 const controller = require('@app/controllers')
 
 router.get('/test', (req, res) => {
-  res.send(BASE_PATH)
+  res.send(global.BASE_PATH)
 })
 
 router.get('/chat', controller.chat.index)
@@ -15,7 +15,6 @@ router.get('/contact', (req, res) => {
 
 router.post('/contact/process', (req, res) => {
   const body = req.body
-  const name = req.body.name
   console.log(body)
   res.redirect('/contact')
 })
