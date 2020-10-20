@@ -1,19 +1,17 @@
 // The error module base on express-validator
 // https: //express-validator.github.io/docs/index.html
-const {
-  body,
-  validationResult
-} = require('express-validator')
+const { body, validationResult } = require('express-validator')
+const path = require('path')
 
 const service = {
 
   validate () {
     let msg
-    results = validationResult(REQUEST)
+    const results = validationResult(global.REQUEST)
     if (!results.isEmpty()) {
       msg = results.array()[0].msg
 
-      if (REQUEST.url != '/login') {
+      if (global.REQUEST.url !== '/login') {
         this.flashErrors(results.array())
       }
     }
@@ -31,12 +29,12 @@ const service = {
     })
 
     Object.entries(datas).forEach(([key, value]) => {
-      REQUEST.flash('error.' + key, value)
+      global.REQUEST.flash('error.' + key, value)
     })
   },
 
   error (field) {
-    return REQUEST.flash('error.' + field)
+    return global.REQUEST.flash('error.' + field)
   },
 
   required (field) {
@@ -68,7 +66,7 @@ const service = {
       req
     }) => {
       if (value !== req.body.password_confirmation) {
-        return Promise.reject('Password confirmation does not match password')
+        return Promise.reject(new Error('Password confirmation does not match password'))
       }
 
       return true

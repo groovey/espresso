@@ -3,7 +3,7 @@ const url = require('url')
 module.exports = {
 
   full () {
-    req = REQUEST
+    const req = global.REQUEST
 
     return url.format({
       protocol: req.protocol,

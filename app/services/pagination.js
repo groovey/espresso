@@ -11,7 +11,7 @@ const service = {
 
   init (url) {
     this.url = url
-    this.currentPage = parseInt(REQUEST.query.page) || 1
+    this.currentPage = parseInt(global.REQUEST.query.page) || 1
     const skip = (this.currentPage - 1) * parseInt(this.perPage)
 
     return {

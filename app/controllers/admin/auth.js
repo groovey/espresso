@@ -16,7 +16,7 @@ const controller = {
   },
 
   logout: (req, res) => {
-    req.session.destroy(err => {
+    req.session.destroy(() => {
       res.redirect('/admin/login')
     })
   },
@@ -58,7 +58,7 @@ const controller = {
   },
 
   view (view) {
-    return path.join(RESOURCES_PATH, 'views', 'admin', 'auth', view)
+    return path.join(global.RESOURCES_PATH, 'views', 'admin', 'auth', view)
   }
 }
 

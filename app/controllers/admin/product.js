@@ -85,7 +85,7 @@ const controller = {
   },
 
   view (view) {
-    return path.join(RESOURCES_PATH, 'views', 'admin', 'products', view)
+    return path.join(global.RESOURCES_PATH, 'views', 'admin', 'products', view)
   }
 }
 

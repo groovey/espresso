@@ -162,7 +162,7 @@ const controller = {
   },
 
   view (view) {
-    return path.join(RESOURCES_PATH, 'views', 'admin', 'users', view)
+    return path.join(global.RESOURCES_PATH, 'views', 'admin', 'users', view)
   }
 }
 

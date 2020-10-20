@@ -1,5 +1,4 @@
 const path = require('path')
-const mongo = require('@app/services').mongo
 
 const service = {
 
@@ -7,7 +6,7 @@ const service = {
   multiplier: 1,
 
   require (file) {
-    this.collection = require(path.join(BASE_PATH, 'database', 'seeders', file))
+    this.collection = require(path.join(global.BASE_PATH, 'database', 'seeders', file))
     return this.collection
   },
 

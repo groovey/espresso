@@ -7,6 +7,9 @@ const middleware = {
   },
 
   code500: (err, req, res, next) => {
+    if (err) {
+      console.log(err)
+    }
     middleware.render(res, 505)
   },
 

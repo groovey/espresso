@@ -7,7 +7,7 @@ const socket = {
 
   start () {
     this.io.use(function (socket, next) {
-      var handshake = socket.request
+      // var handshake = socket.request
       next()
     })
 

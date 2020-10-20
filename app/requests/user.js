@@ -51,7 +51,7 @@ const request = {
         .toArray()
         .then((data) => {
           if (data.length > 0) {
-            return Promise.reject('E-mail already in use')
+            return Promise.reject(new Error('E-mail already in use'))
           }
         })
     })
