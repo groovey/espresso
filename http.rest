@@ -10,10 +10,9 @@ content-type: application/json
 
 {
     "_csrf" : "7xgBtnHp-8t73rRSWmn7dFunpkLqa4W1XlNg",
-    "username": "admin@gmail.com" , 
+    "username": "admin@gmail.com" ,
     "password" : "password"
 }
 
 ### All users
 GET http://localhost/admin/users
- 

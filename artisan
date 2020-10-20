@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
 // Node alias
-require('module-alias/register');
+require('module-alias/register')
 
 // Env variables
-require('dotenv').config();
+require('dotenv').config()
 
 // The application path directories
-require('./bootstrap/path')(__dirname);
+require('./bootstrap/path')(__dirname)
 
 // The engine of the cli app
-const app = require('./app/console');
+const app = require('./app/console')
 
 // Bootstrap all the command
-app.commands();
+app.commands()
 
 // Run the console app
-app.run();
+app.run()
