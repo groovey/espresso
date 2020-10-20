@@ -8,7 +8,6 @@ Welcome to Espresso.JS.
 
 login: http://localhost:3000/admin/login
 
-* Replace IP with your local ip address.
 
 Instructions for creating a user:
 - Go to http: //localhost:3000/admin/users/create
@@ -17,12 +16,11 @@ Instructions for creating a user:
     email: admin@gmail.com
     password: password
 
-
 Right now if you notice you can access admin area with no auth.
 This has been disabled purposely for hassle free local development.
 
+Admin: http://localhost:3000/admin/dashboard
 
-Admin: http: //localhost:3000/admin/dashboard
 
 
 Crafted with Love.

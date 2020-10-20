@@ -1,24 +1,24 @@
 <nav>
-    <ul>
-        <li><a href="dashboard">Home</a></li>
-        <li><a href="users">Users</a></li>
-        <li><a href="products">Products</a></li>
-        <li>
-            <form action="logout" id="logout-form" method="POST" x-data="nav">
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                <a href="#" x-on:click="nav.logout()">Logout</a>
-            </form>
-        </li>
-    </ul>
+  <ul>
+    <li><a href="dashboard">Home</a></li>
+    <li><a href="users">Users</a></li>
+    <li><a href="products">Products</a></li>
+    <li>
+      <form action="logout" id="logout-form" method="POST" x-data="nav">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <a href="#" x-on:click="nav.logout()">Logout</a>
+      </form>
+    </li>
+  </ul>
 </nav>
 
 <script>
-    let nav = {
-        logout() {
-            event.preventDefault();
-            document.getElementById('logout-form').submit();
-        }
-    };
+  let nav = {
+    logout() {
+      event.preventDefault()
+      document.getElementById('logout-form').submit()
+    },
+  }
 </script>
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>

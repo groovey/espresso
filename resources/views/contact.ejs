@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact us</title>
-</head>
+  </head>
 
-<body>
-
-    <header>
-        <%- include('partials/nav') %>
-    </header>
-
+  <body>
+    <header><%- include('partials/nav') %></header>
     <main>
-
-        <form action="/contact/process" method="POST">
-            <input type="text" name="message">
-            <input type="submit" value="Contact Us!">
-        </form>
-
+      <form action="/contact/process" method="POST">
+        <input type="text" name="message" />
+        <input type="submit" value="Contact Us!" />
+      </form>
     </main>
-
     <%- include('partials/copyright') %>
-
-</body>
-
+  </body>
 </html>

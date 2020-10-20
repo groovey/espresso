@@ -1,46 +1,27 @@
 <div>
-<% if (pagination.totalPage > 0) { %>
-    <ul class="">
-
-        <% if(pagination.hasFirstLast){ %>
-            <li><a href="<%= pagination.url %>1">First</a></li>
-        <% } %> 
-
-        <% if (pagination.currentPage == 1) { %>
-            <li class="disabled"><a>Previous</a></li>            
-        <% } else { %>
-            <li><a href="<%= pagination.url + (pagination.currentPage - 1 ) %>">Previous</a></li>            
-        <% } %>
-
-        <% if (pagination.startPage >= 2) { %>            
-            <li class="disabled"><a>...</a></li>            
-        <% } %>
-
-        
-        <% for (i = pagination.startPage; i <= pagination.endPage; i++) { %> 
-            <% if (i == pagination.currentPage) { %>
-                <li class="active" style="background-color: greenyellow;"><a><%= i %></a></li>
-            <% } else { %>
-                <li><a href="<%= pagination.url %><%= i %>"><%= i %></a></li>
-            <% } %>         
-        <% } %>     
-
-        
-        <% if (pagination.endPage <= pagination.totalPage - 1) { %>            
-            <li class="disabled"><a>...</a></li>            
-        <% } %>
-        
-        <% if (pagination.currentPage == pagination.totalPage) { %>            
-            <li class="disabled"><a>Next</a></li>
-        <% } else { %>            
-            <li><a href="<%= pagination.url + (pagination.currentPage + 1 ) %>">Next</a></li>
-        <% } %>
-
-       
-        <% if(pagination.hasFirstLast){ %>
-            <li><a href="<%= pagination.url + (pagination.totalPage ) %>">Last</a></li>            
-        <% } %> 
-
-    </ul>
-<% } %>
+  <% if (pagination.totalPage > 0) { %>
+  <ul class="">
+    <% if(pagination.hasFirstLast){ %>
+    <li><a href="<%= pagination.url %>1">First</a></li>
+    <% } %> <% if (pagination.currentPage == 1) { %>
+    <li class="disabled"><a>Previous</a></li>
+    <% } else { %>
+    <li><a href="<%= pagination.url + (pagination.currentPage - 1 ) %>">Previous</a></li>
+    <% } %> <% if (pagination.startPage >= 2) { %>
+    <li class="disabled"><a>...</a></li>
+    <% } %> <% for (i = pagination.startPage; i <= pagination.endPage; i++) { %> <% if (i == pagination.currentPage) { %>
+    <li class="active" style="background-color: greenyellow"><a><%= i %></a></li>
+    <% } else { %>
+    <li><a href="<%= pagination.url %><%= i %>"><%= i %></a></li>
+    <% } %> <% } %> <% if (pagination.endPage <= pagination.totalPage - 1) { %>
+    <li class="disabled"><a>...</a></li>
+    <% } %> <% if (pagination.currentPage == pagination.totalPage) { %>
+    <li class="disabled"><a>Next</a></li>
+    <% } else { %>
+    <li><a href="<%= pagination.url + (pagination.currentPage + 1 ) %>">Next</a></li>
+    <% } %> <% if(pagination.hasFirstLast){ %>
+    <li><a href="<%= pagination.url + (pagination.totalPage ) %>">Last</a></li>
+    <% } %>
+  </ul>
+  <% } %>
 </div>

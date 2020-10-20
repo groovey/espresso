@@ -1,55 +1,51 @@
 <style>
-    table,
-    th,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
 
-    th,
-    td {
-        padding: 5px;
-
-    }
+  th,
+  td {
+    padding: 5px;
+  }
 </style>
-
 
 <h3>Product Listing</h3>
 
 <p>
-    <a href="/admin/products/create">Add Product</a>
+  <a href="/admin/products/create">Add Product</a>
 </p>
 
-<table style="width: 50%;">
-    <thead>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Show</td>
-        <td>Delete</td>
-        <td>Edit</td>
-    </thead>
+<table style="width: 50%">
+  <thead>
+    <td>ID</td>
+    <td>Name</td>
+    <td>Price</td>
+    <td>Show</td>
+    <td>Delete</td>
+    <td>Edit</td>
+  </thead>
 
-    <% products.forEach(product => { %>
-    <tr>
-        <td><%= product.id %></td>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td>
-            <a href="/admin/products/<%= product.id %>">Show</a>
-        </td>
-        <td>
-            <form action="/admin/products/<%= product.id %>" method="POST" id="delete_<%= product.id %>">
-                <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" value="Delete">
-            </form>
-
-        </td>
-        <td>
-            <a href="/admin/products/<%= product.id %>/edit">Edit</a>
-        </td>
-    </tr>
-    <% }) %>
-
+  <% products.forEach(product => { %>
+  <tr>
+    <td><%= product.id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.price %></td>
+    <td>
+      <a href="/admin/products/<%= product.id %>">Show</a>
+    </td>
+    <td>
+      <form action="/admin/products/<%= product.id %>" method="POST" id="delete_<%= product.id %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken  %>" />
+        <input type="hidden" name="_method" value="DELETE" />
+        <input type="submit" value="Delete" />
+      </form>
+    </td>
+    <td>
+      <a href="/admin/products/<%= product.id %>/edit">Edit</a>
+    </td>
+  </tr>
+  <% }) %>
 </table>

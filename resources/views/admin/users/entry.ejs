@@ -1,26 +1,26 @@
 <% if (error.length > 0) { %>
-<div class="" style="background-color: red;">ERROR: <%= error %></div>
-<% } %> 
+<div class="" style="background-color: red">ERROR: <%= error %></div>
+<% } %>
 
 <form action="<%= action %>" method="POST">
-    <input type="hidden" name="_method" value="<%= method %>">
-    <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-    <div>
-        <input type="text" name="name" placeholder="Name" value="<%= user.name %>">       
-        <%= validator.error('name') %> 
-    </div>
-    <div>
-        <input type="text" name="email" placeholder="Email" value="<%= user.email %>">        
-        <%= validator.error('email') %> 
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="Password" value="">
-        <%= validator.error('password') %> 
-    </div>
-    <div>
-        <input type="password" name="password_confirmation" placeholder="Confirm Password" value="">
-    </div>
-    <div>
-        <input type="submit" value="<%= submit %>">
-    </div>
+  <input type="hidden" name="_method" value="<%= method %>" />
+  <input type="hidden" name="_csrf" value="<%= csrfToken  %>" />
+  <div>
+    <input type="text" name="name" placeholder="Name" value="<%= user.name %>" />
+    <%= validator.error('name') %>
+  </div>
+  <div>
+    <input type="text" name="email" placeholder="Email" value="<%= user.email %>" />
+    <%= validator.error('email') %>
+  </div>
+  <div>
+    <input type="password" name="password" placeholder="Password" value="" />
+    <%= validator.error('password') %>
+  </div>
+  <div>
+    <input type="password" name="password_confirmation" placeholder="Confirm Password" value="" />
+  </div>
+  <div>
+    <input type="submit" value="<%= submit %>" />
+  </div>
 </form>
