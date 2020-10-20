@@ -1,6 +1,6 @@
 const logger = require('morgan')
 const fs = require('fs')
-const helmet = require('helmet')
+// const helmet = require('helmet')
 const path = require('path')
 const compression = require('compression')
 
@@ -9,7 +9,7 @@ module.exports = (app) => {
   // app.use(helmet());
 
   // Node logger
-  var accessLogStream = fs.createWriteStream(path.join(STORAGE_PATH, 'logs', 'access.log'), {
+  var accessLogStream = fs.createWriteStream(path.join(global.STORAGE_PATH, 'logs', 'access.log'), {
     flags: 'a'
   })
 
