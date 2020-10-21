@@ -1,5 +1,9 @@
 module.exports = {
-  purge: ['./**/*.html', './**/*.ejs'],
+  purge: [
+    './**/*.html',
+    './**/*.vue',
+    './**/*.jsx'
+  ],
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
