@@ -3,7 +3,7 @@
 The opinionated Laravel version of Nodejs.
 </p>
 
-## About Espresso.js
+#### About Espresso.js
 
 Espresso is a node application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Espresso.js takes the pain out of development by easing common tasks used in many web projects, such as:
 
@@ -18,19 +18,23 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 - Using Javascript Standard Style
 - Crafted with Love.
 
-## Start
+#### Start
     
     $ npm run serve
   
-## CLI
+#### CLI
 
-    $ node artisan
+    $ node artisan    
 
-## Webpack
+#### Webpack
 
     $ npm run build:dev
     $ npm run build:prod
+
+#### To seed user collection
+
+    $ node artisan db:seed user
   
-## License
+#### License
 
 The Espresso.js framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

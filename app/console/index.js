@@ -16,6 +16,9 @@ module.exports = {
   run () {
     this.db().then(() => {
       program.parse(process.argv)
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      process.exit(1)
+    })
   }
 }

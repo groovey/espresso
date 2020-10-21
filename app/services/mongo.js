@@ -21,8 +21,13 @@ const service = {
 
     client.then((db) => {
       database = db.db(process.env.MONGO_DATABASE)
-      console.log(' Mongo connection at: ' + chalk.green(url))
-      console.log()
+
+      const filename = require.main.filename
+
+      if (!filename.includes('artisan')) {
+        console.log(' Mongo connection at: ' + chalk.green(url))
+        console.log()
+      }
     }).catch(err => {
       if (err) {
         const message = 'Unable to connect to mongo db: ' + chalk.red(url)
