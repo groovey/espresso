@@ -1,0 +1,26 @@
+version: "3.3"
+
+#Docker Networks
+networks:
+  espresso:
+    driver: bridge
+
+services:
+
+  # Application service
+  espresso:
+    image: espresso:1.0
+    container_name: espresso
+    # restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: ".env"
+    ports:
+      - "3000:3000"
+    volumes:
+      - //DATA/espresso:/app/espresso
+      - "/app/espresso/node_modules"
+    networks:
+      - espresso
+
