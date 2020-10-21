@@ -1,9 +1,6 @@
 const chalk = require('chalk')
 
-const {
-  MongoClient,
-  ObjectId
-} = require('mongodb')
+const { MongoClient, ObjectId } = require('mongodb')
 
 let client
 let database
@@ -24,11 +21,14 @@ const service = {
 
     client.then((db) => {
       database = db.db(process.env.MONGO_DATABASE)
-      console.log(chalk.green('Sucessfully connected to the mongo server.'))
+      console.log(' Mongo connection at: ' + chalk.green(url))
+      console.log()
+    }).catch(err => {
+      if (err) {
+        const message = 'Unable to connect to mongo db: ' + chalk.red(url)
+        throw new Error(message)
+      }
     })
-      .catch(err => {
-        console.log(err)
-      })
 
     return client
   },

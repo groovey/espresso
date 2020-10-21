@@ -106,7 +106,15 @@ module.exports = () => {
 
     run () {
       const server = app.listen(port, () => {
-        console.log('Server running at ' + chalk.bgBlue(hostname + ':' + port))
+        console.log()
+        console.log(' ' + chalk.bgYellow(chalk.black(' INFO ')))
+        console.log()
+        console.log(' App running at:')
+        console.log('  - Local: ' + chalk.green(hostname + ':' + port))
+        console.log()
+        console.log(' Note that the development build is not optimized.')
+        console.log(' To create a production build, run ' + chalk.blue('npm run build:prod.'))
+        console.log()
       })
 
       return server
