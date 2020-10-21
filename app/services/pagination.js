@@ -1,5 +1,4 @@
 // https://stackoverflow.com/questions/11272108/logic-behind-pagination-like-google
-
 const service = {
 
   perPage: 1,
@@ -22,17 +21,17 @@ const service = {
   },
 
   paginate (total) {
-    currentPage = this.currentPage
-    totalPage = Math.ceil(total / this.perPage)
+    var currentPage = this.currentPage
+    var totalPage = Math.ceil(total / this.perPage)
 
     if (currentPage > totalPage) {
       currentPage = totalPage
     }
 
-    startPage = (currentPage < 5) ? 1 : currentPage - 4
-    endPage = 8 + startPage
+    var startPage = (currentPage < 5) ? 1 : currentPage - 4
+    var endPage = 8 + startPage
     endPage = (totalPage < endPage) ? totalPage : endPage
-    diff = startPage - endPage + 8
+    var diff = startPage - endPage + 8
     startPage -= (startPage - diff > 0) ? diff : 0
 
     this.currentPage = currentPage

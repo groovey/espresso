@@ -10,15 +10,8 @@ const controller = {
 
   // Display a listing of the resource.
   index: async (req, res) => {
-    const {
-      skip,
-      perPage
-    } = pagination.init('/admin/users?page=')
-
-    const sort = {
-      _id: -1
-    }
-
+    const { skip, perPage } = pagination.init('/admin/users?page=')
+    const sort = { _id: -1 }
     const total = await User.collection().find({}).count()
     const datas = await User.collection().find({}).sort(sort).skip(skip).limit(perPage).toArray()
 
@@ -122,9 +115,7 @@ const controller = {
     }
 
     const password = req.body.password
-    const cond = {
-      _id: User.id(req.params.id)
-    }
+    const cond = { _id: User.id(req.params.id) }
     const data = {
       $set: {
         name: req.body.name,
@@ -149,9 +140,7 @@ const controller = {
 
   // Remove the specified resource from storage.
   destroy: (req, res) => {
-    const cond = {
-      _id: User.id(req.params.id)
-    }
+    const cond = { _id: User.id(req.params.id) }
 
     User.collection()
       .deleteOne(cond)
