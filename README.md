@@ -34,6 +34,13 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 ### To seed user collection
 
     $ node artisan db:seed user
+
+### Docker
+
+If you want to use docker. Run the following commands:
+
+    $ docker-compose up -d
+    $ docker-compose down
   
 ### License
 
