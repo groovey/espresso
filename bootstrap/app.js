@@ -113,7 +113,7 @@ module.exports = () => {
         console.log('  - Local: ' + chalk.green(hostname + ':' + port))
         console.log()
         console.log(' Note that the development build is not optimized.')
-        console.log(' To create a production build, run ' + chalk.blue('npm run build:prod.'))
+        console.log(' To create a production build, run ' + chalk.blue('npm run build:prod'))
         console.log()
       })
 
