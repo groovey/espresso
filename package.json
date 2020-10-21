@@ -28,6 +28,7 @@
     "fs-extra": "^9.0.1",
     "graphql": "^15.3.0",
     "helmet": "^4.1.1",
+    "ip": "^1.1.5",
     "lodash": "^4.17.20",
     "method-override": "^3.0.0",
     "module-alias": "^2.2.2",
@@ -61,7 +62,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env supervisor index.js",
-    "build" : "npm run build:dev",
+    "build": "npm run build:dev",
     "build:tailwind": "tailwindcss build resources/css/app.css -o public/css/styles.css",
     "build:dev": "webpack --mode development",
     "build:prod": "set NODE_ENV=production && webpack --mode production"
