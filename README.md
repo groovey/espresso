@@ -20,7 +20,7 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 
 ### Start
     
-    $ npm run serve
+    $ npm run start
   
 ### CLI
 
