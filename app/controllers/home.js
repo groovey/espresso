@@ -15,7 +15,7 @@ Instructions for creating a user:
     email: admin@gmail.com
     password: password
 
-Note: Admin authenticaion has been disabled on development.
+Note: Admin authentication has been disabled on development.
 Check the file ./app/middlewares/auth.js for more details.
 
 Admin: http://localhost:3000/admin/dashboard
