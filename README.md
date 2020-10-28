@@ -24,9 +24,12 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 
 ### Setup
 
-To run espresso - you need to setup a mongodb or mysql database. You can also do this by downloading docker below:
+To run espresso - you need to setup a mongodb or mysql database.
+You can also do this by downloading docker below:
 
     https://github.com/groovey/docker-common
+
+You need to setup .env environmental variables for espresso.    
   
 ### CLI
 
