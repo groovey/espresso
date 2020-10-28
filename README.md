@@ -29,7 +29,7 @@ You can also do this by downloading docker below:
 
     https://github.com/groovey/docker-common
 
-You need to setup .env environmental variables for espresso.    
+You need to setup `.env` environmental variables for espresso.    
   
 ### CLI
 
