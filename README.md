@@ -21,7 +21,7 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 ### Setup
 
     $ npm install --legacy-peer-deps
-    s$ docker-compose up -d
+    $ docker-compose up -d
 
 ### Start
     
