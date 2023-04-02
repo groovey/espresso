@@ -2,8 +2,13 @@ version: "3.3"
 
 #Docker Networks
 networks:
-  espresso:
+  sandbox:
     driver: bridge
+
+# Volumes
+volumes:
+  espresso_mysql_data:
+    driver: local
 
 services:
 
@@ -19,8 +24,35 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - //DATA/espresso:/app/espresso
-      - "/app/espresso/node_modules"
+      - ./:/app/espresso
+      - "/code/espresso/node_modules"
     networks:
-      - espresso
+      - sandbox
 
+  # Mysql service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: webdevel
+    volumes:
+      - espresso_mysql_data:/var/lib/mysql/
+    networks:
+      - sandbox
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=webdevel
