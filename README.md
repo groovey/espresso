@@ -18,16 +18,14 @@ Espresso is a node application framework with expressive, elegant syntax. We bel
 - Using Javascript Standard Style
 - Crafted with Love.
 
+### Setup
+
+    $ npm install --legacy-peer-deps
+    s$ docker-compose up -d
+
 ### Start
     
     $ npm run serve
-
-### Setup
-
-To run espresso - you need to setup a mongodb and mysql database. 
-You need to setup `.env` environmental variables for espresso.    
-
-    $ npm install --legacy-peer-deps
   
 ### CLI
 
@@ -41,13 +39,6 @@ You need to setup `.env` environmental variables for espresso.
 ### To seed user collection
 
     $ node artisan db:seed user
-
-### Docker
-
-If you want to use docker. Run the following commands:
-
-    $ docker-compose up -d
-    $ docker-compose down
   
 ### License
 

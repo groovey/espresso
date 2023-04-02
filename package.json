@@ -67,7 +67,7 @@
     "build": "npm run build:dev",
     "build:tailwind": "tailwindcss build resources/css/tailwind.css -o public/css/tailwind.css",
     "build:postcss": "postcss resources/css/tailwind.css -o public/css/postcss.css",
-    "build:dev": "webpack --mode development --openssl-legacy-provider",
+    "build:dev": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode development --openssl-legacy-provider",
     "build:prod": "set NODE_ENV=production && webpack --mode production"
   },
   "repository": {
